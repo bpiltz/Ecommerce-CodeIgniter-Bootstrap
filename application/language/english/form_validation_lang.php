@@ -1,3 +1,2 @@
-<?php
-
+<?php 
 $lang['required'] = 'Required fields';

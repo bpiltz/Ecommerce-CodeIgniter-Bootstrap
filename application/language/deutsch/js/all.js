@@ -1,0 +1,15 @@
+var lang = { 
+added_to_cart:"zum Warenkorb hinzugef&uuml;gt",
+error_to_cart:"Problem mit dem Warenkorb, bitte erneut versuchen!",
+no_products:"keine Produkte",
+confirm_clear_cart:"Sicher, dass Sie die Elemente l&ouml;schen wollen?",
+cleared_cart:"Ihr Warenkorb ist leer",
+are_you_sure:"Sind Sie sicher?",
+yes:"Ja",
+no:"Nein",
+clear_all:"geleert",
+checkout:"Zahlung",
+remove_from_cart:"vom Warenkorb gel&ouml;scht",
+enter_valid_email:"bitte eine g&uuml;ltige Email-Adresse angeben",
+discountCodeInvalid:"Rabattcode ist ung&uuml;ltig",
+};
