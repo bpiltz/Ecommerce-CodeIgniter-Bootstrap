@@ -71,18 +71,21 @@ class ShoppingCart
             return 0;
         }
         $count_articles = array_count_values($_SESSION['shopping_cart']);
-        $this->sumValues = array_sum($count_articles);
         $finalSum = 0;
+        $finalCount = 0;
 
         foreach ($result['array'] as &$article) {
             $article['num_added'] = $count_articles[$article['id']];
             $article['price'] = $article['price'] == '' ? 0 : $article['price'];
             $article['sum_price'] = $article['price'] * $count_articles[$article['id']];
             $finalSum = $finalSum + $article['sum_price'];
+            $finalCount = $finalCount + $count_articles[$article['id']];
             $article['sum_price'] = number_format($article['sum_price'], 2);
             $article['price'] = $article['price'] != '' ? number_format($article['price'], 2) : 0;
         }
         $result['finalSum'] = number_format($finalSum, 2);
+        $result['finalCount'] = $finalCount;
+        $this->sumValues = $finalCount;
         return $result;
     }
 
