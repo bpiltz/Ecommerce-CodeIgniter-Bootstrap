@@ -6,3 +6,4 @@ img/
 phpinfo.php
 test/
 /application/logs/*
+attachments/shop_images/*
