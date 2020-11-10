@@ -45,10 +45,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h1><?= $product['title'] ?></h1>
                 <div class="row row-info">
                     <div class="col-sm-6"><b><?= lang('price') ?>:</b></div>
-                    <div class="col-sm-6"><?= $product['price'] . CURRENCY ?></div>
+                    <div class="col-sm-6">
+                    <?php if (isset($_SESSION['logged_vendor'])) { 
+                        echo $product['price'] . CURRENCY;
+                    } else {
+                        echo lang('register');
+                    } ?>
+                    </div>
                     <div class="col-sm-12 border-bottom"></div>
                 </div>
-                <?php if ($product['old_price'] != '') { ?>
+                <?php if ($product['old_price'] != '' && isset($_SESSION['logged_vendor'])) { ?>
                     <div class="row row-info">
                         <div class="col-sm-6"><b><?= lang('old_price') ?>:</b></div>
                         <div class="col-sm-6"><?= $product['old_price'] . CURRENCY ?></div>
@@ -95,18 +101,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row row-info">
                     <div class="col-sm-6"></div>
                     <div class="col-sm-6 manage-buttons">
-                        <?php if ($product['quantity'] > 0) { ?>
-                            <div>
-                                <a href="javascript:void(0);" data-id="<?= $product['id'] ?>" data-goto="<?= LANG_URL . '/checkout' ?>" class="add-to-cart btn-add">
-                                    <span class="text-to-bg"><?= lang('buy_now') ?></span>
-                                </a>
-                            </div>
-                            <a href="javascript:void(0);" data-id="<?= $product['id'] ?>" data-goto="<?= LANG_URL . '/shopping-cart' ?>" class="add-to-cart btn-add">
-                                <span class="text-to-bg"><?= lang('add_to_cart') ?></span>
+                    <?php if ($product['quantity'] > 0 && isset($_SESSION['logged_vendor'])) { ?>
+                        <div>
+                            <a href="javascript:void(0);" data-id="<?= $product['id'] ?>" data-goto="<?= LANG_URL . '/checkout' ?>" class="add-to-cart btn-add">
+                                <span class="text-to-bg"><?= lang('buy_now') ?></span>
                             </a>
-                        <?php } else { ?>
-                            <div class="alert alert-info"><?= lang('out_of_stock_product') ?></div>
-                        <?php } ?>
+                        </div>
+                        <a href="javascript:void(0);" data-id="<?= $product['id'] ?>" data-goto="<?= LANG_URL . '/shopping-cart' ?>" class="add-to-cart btn-add">
+                            <span class="text-to-bg"><?= lang('add_to_cart') ?></span>
+                        </a>
+                    <?php } else { ?>
+                        <div class="alert alert-info"><?= lang('out_of_stock_product') ?></div>
+                    <?php } ?>
                     </div>
                     <div class="col-sm-12 border-bottom"></div>
                 </div> 
@@ -130,10 +136,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <img src="<?= base_url('attachments/shop_images/' . $prod['image']) ?>" alt="" class="img-responsive">
                     </a>
                     <h3><?= $prod['title'] ?></h3>
-                    <span class="price"><?= $prod['price'] . CURRENCY ?></span>
-                    <a class="add-to-cart" data-goto="<?= LANG_URL . '/checkout' ?>" href="javascript:void(0);" data-id="<?= $prod['id'] ?>">
-                        <?= lang('add_to_cart') ?>
-                    </a>
+                    <?php if (isset($_SESSION['logged_vendor'])) { ?>
+                        <span class="price"><?= $prod['price'] . CURRENCY ?></span>
+                        <a class="add-to-cart" data-goto="<?= LANG_URL . '/checkout' ?>" href="javascript:void(0);" data-id="<?= $prod['id'] ?>">
+                            <?= lang('add_to_cart') ?>
+                        </a>
+                    <?php } ?>
                 </div>
                 <?php
             }

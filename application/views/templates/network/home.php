@@ -31,7 +31,7 @@ if (count($sliderProducts) > 0) {
                                 <div class="description">
                                     <?= character_limiter(strip_tags($article['basic_description']), 150) ?>
                                 </div>
-                                <?php if ($hideBuyButtonsOfOutOfStock == 0 || (int)$article['quantity'] > 0) { ?>
+                                <?php if (($hideBuyButtonsOfOutOfStock == 0 || (int)$article['quantity'] > 0) && isset($_SESSION['logged_vendor'])) { ?>
                                 <a class="option add-to-cart" data-goto="<?= LANG_URL . '/checkout' ?>" href="javascript:void(0);" data-id="<?= $article['id'] ?>">
                                     <?= lang('buy_now') ?>
                                 </a>
@@ -77,12 +77,16 @@ if (count($sliderProducts) > 0) {
                                     <a href="<?= LANG_URL . '/' . $product['url'] ?>">
                                         <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" class="img-responsive">
                                         <h1><?= $product['title'] ?></h1>
-                                        <span class="price"><?= $product['price'] ?> &#8377;</span>
+                                         <?php if (isset($_SESSION['logged_vendor'])) { ?>
+                                            <span class="price"><?= $product['price'] ?> &#8377;</span>
+                                         <?php } ?>   
                                     </a>
-                                    <a class="add-to-cart"  href="<?= LANG_URL . '/' . $product['url'] ?>">
-                                        <?= lang('add_to_cart') ?>
-                                    </a>
-                                </div>
+                                    <?php if (isset($_SESSION['logged_vendor'])) { ?>
+                                        <a class="add-to-cart"  href="<?= LANG_URL . '/' . $product['url'] ?>">
+                                            <?= lang('add_to_cart') ?>
+                                        </a>
+                                    <?php } ?>
+                               </div>
                             </div>
                             <?php
                             $i++;
