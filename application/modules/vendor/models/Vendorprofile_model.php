@@ -26,7 +26,7 @@ class Vendorprofile_model extends CI_Model
     {
         if (!$this->db->where('id', $vendor_id)->update('vendors', array(
                     'name' => $post['vendor_name'],
-                    'url' => $post['vendor_url']
+                    'url' => trim($post['vendor_url'])
                 ))) {
             log_message('error', print_r($this->db->error(), true));
         }

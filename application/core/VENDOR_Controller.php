@@ -80,7 +80,7 @@ class VENDOR_Controller extends MX_Controller
         if (mb_strlen(trim($_POST['vendor_url'])) == 0) {
             $errors[] = lang('enter_vendor_url');
         }
-        if (!$this->Vendorprofile_model->isVendorUrlFree($_POST['vendor_url'])) {
+        if (!$this->Vendorprofile_model->isVendorUrlFree($_POST['vendor_url']) && $this->vendor_url != trim($_POST['vendor_url'])) {
             $errors[] = lang('vendor_url_taken');
         }
         if (empty($errors)) {
@@ -89,7 +89,7 @@ class VENDOR_Controller extends MX_Controller
         } else {
             $this->session->set_flashdata('update_vend_err', $errors);
         }
-        redirect(LANG_URL . '/vendor/me');
+        redirect(LANG_URL . '/vendor/profile');
     }
 
 }
