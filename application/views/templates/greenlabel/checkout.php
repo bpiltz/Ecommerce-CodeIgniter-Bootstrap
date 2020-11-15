@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <div class="container" id="checkout-page">
     <?php
-    if ($cartItems['array'] != null) {
+    if (!empty($cartItems['array'])) {
         ?> 
         <form method="POST" id="goOrder">
             <div class="row">
