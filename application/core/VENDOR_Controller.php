@@ -15,6 +15,7 @@ class VENDOR_Controller extends MX_Controller
     public $vendor_id;
     public $vendor_name;
     public $vendor_url;
+    public $vendor_profile;
 
     public function __construct()
     {
@@ -25,6 +26,18 @@ class VENDOR_Controller extends MX_Controller
         $vars = array();
         $vars['vendor_name'] = $this->vendor_name;
         $vars['vendor_url'] = $this->vendor_url;
+        $vars['vendor_street'] = $this->vendor_profile['vendor_street'];
+        $vars['vendor_number'] = $this->vendor_profile['vendor_number'];
+        $vars['vendor_city'] = $this->vendor_profile['vendor_city'];
+        $vars['vendor_post_code'] = $this->vendor_profile['vendor_post_code'];
+        $vars['vendor_country'] = $this->vendor_profile['vendor_country'];
+        $vars['vendor_phone'] = $this->vendor_profile['vendor_phone'];
+        $vars['vendor_mobile'] = $this->vendor_profile['vendor_mobile'];
+        $vars['vendor_website'] = $this->vendor_profile['vendor_website'];
+        $vars['vendor_telegram'] = $this->vendor_profile['vendor_telegram'];
+        $vars['vendor_surname'] = $this->vendor_profile['vendor_surname'];
+        $vars['vendor_gender'] = $this->vendor_profile['vendor_gender'];
+        $vars['vendor_birthday'] = $this->vendor_profile['vendor_birthday'];
         $this->load->vars($vars);
         if (isset($_POST['saveVendorDetails'])) {
             $this->saveNewVendorDetails();
@@ -68,6 +81,20 @@ class VENDOR_Controller extends MX_Controller
             $this->vendor_id = $array['id'];
             $this->vendor_name = $array['name'];
             $this->vendor_url = $array['url'];
+            $this->vendor_profile = array();
+            //var_dump($array);
+            $this->vendor_profile['vendor_street'] = $array['street'];
+            $this->vendor_profile['vendor_number'] = $array['number'];
+            $this->vendor_profile['vendor_city'] = $array['city'];
+            $this->vendor_profile['vendor_post_code'] = $array['post_code'];
+            $this->vendor_profile['vendor_country'] = $array['country'];
+            $this->vendor_profile['vendor_phone'] = $array['phone'];
+            $this->vendor_profile['vendor_mobile'] = $array['mobile'];
+            $this->vendor_profile['vendor_website'] = $array['website'];
+            $this->vendor_profile['vendor_telegram'] = $array['telegram'];
+            $this->vendor_profile['vendor_surname'] = $array['surname'];
+            $this->vendor_profile['vendor_gender'] = $array['gender'];
+            $this->vendor_profile['vendor_birthday'] = $array['birthday'];
         }
     }
 

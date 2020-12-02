@@ -2,6 +2,7 @@
 </div>
 </div>
 <script src="<?= base_url('assets/bootstrap-select-1.12.1/js/bootstrap-select.min.js') ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script> 
 <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/placeholders.min.js') ?>"></script>
 <script>

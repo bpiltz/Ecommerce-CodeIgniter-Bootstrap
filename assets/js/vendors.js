@@ -82,3 +82,12 @@ function removeSecondaryProductImage(image, folder, container) {
         $('#image-container-' + container).remove();
     });
 } 
+
+$(document).ready(function(){
+    $('.datepicker').datepicker({
+        format: "dd.mm.yyyy",
+        todayHighlight: true,
+        "autoclose": true,
+    });
+});
+
