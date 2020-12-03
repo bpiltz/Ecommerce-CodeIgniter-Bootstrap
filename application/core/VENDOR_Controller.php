@@ -36,18 +36,20 @@ class VENDOR_Controller extends MX_Controller
         $vars = array();
         $vars['vendor_name'] = $this->vendor_name;
         $vars['vendor_url'] = $this->vendor_url;
-        $vars['vendor_street'] = $this->vendor_profile['vendor_street'];
-        $vars['vendor_number'] = $this->vendor_profile['vendor_number'];
-        $vars['vendor_city'] = $this->vendor_profile['vendor_city'];
-        $vars['vendor_post_code'] = $this->vendor_profile['vendor_post_code'];
-        $vars['vendor_country'] = $this->vendor_profile['vendor_country'];
-        $vars['vendor_phone'] = $this->vendor_profile['vendor_phone'];
-        $vars['vendor_mobile'] = $this->vendor_profile['vendor_mobile'];
-        $vars['vendor_website'] = $this->vendor_profile['vendor_website'];
-        $vars['vendor_telegram'] = $this->vendor_profile['vendor_telegram'];
-        $vars['vendor_surname'] = $this->vendor_profile['vendor_surname'];
-        $vars['vendor_gender'] = $this->vendor_profile['vendor_gender'];
-        $vars['vendor_birthday'] = $this->vendor_profile['vendor_birthday'];
+        if(!empty($this->vendor_profile)){
+            $vars['vendor_street'] = $this->vendor_profile['vendor_street'];
+            $vars['vendor_number'] = $this->vendor_profile['vendor_number'];
+            $vars['vendor_city'] = $this->vendor_profile['vendor_city'];
+            $vars['vendor_post_code'] = $this->vendor_profile['vendor_post_code'];
+            $vars['vendor_country'] = $this->vendor_profile['vendor_country'];
+            $vars['vendor_phone'] = $this->vendor_profile['vendor_phone'];
+            $vars['vendor_mobile'] = $this->vendor_profile['vendor_mobile'];
+            $vars['vendor_website'] = $this->vendor_profile['vendor_website'];
+            $vars['vendor_telegram'] = $this->vendor_profile['vendor_telegram'];
+            $vars['vendor_surname'] = $this->vendor_profile['vendor_surname'];
+            $vars['vendor_gender'] = $this->vendor_profile['vendor_gender'];
+            $vars['vendor_birthday'] = $this->vendor_profile['vendor_birthday'];
+        }
         $vars['languages'] = $this->Languages_model->getLanguages();
         $vars['trans_load'] = $trans_load;
         $this->load->vars($vars);

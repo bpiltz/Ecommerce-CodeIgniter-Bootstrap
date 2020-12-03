@@ -31,6 +31,7 @@ $lang['more'] = 'mehr';
 $lang['clear_all'] = 'löschen';
 $lang['home'] = 'Home';
 $lang['contacts'] = 'Kontakt';
+$lang['network'] = 'Netzwerk';
 $lang['cash_on_delivery'] = 'Bar bei Lieferung';
 $lang['first_name'] = 'Name';
 $lang['last_name'] = 'Familie';
