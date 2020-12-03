@@ -1,4 +1,5 @@
 <?php 
+$lang['language_selector'] = 'Sprache wählen';
 $lang['products'] = 'Produkte';
 $lang['sort_by'] = 'Sortieren nach';
 $lang['new'] = 'neu';
@@ -197,7 +198,7 @@ $lang['vendor_view'] = 'Verkäufer-Ansicht';
 $lang['vendor'] = 'Verkäufer';
 $lang['vendor_name'] = 'Nachname';
 $lang['enter_vendor_name'] = 'Nachname eingeben';
-$lang['vendor_surname'] = 'Vornamen';
+$lang['vendor_surname'] = 'Vorname';
 $lang['enter_vendor_surname'] = 'Vorname eingeben';
 $lang['vendor_url'] = 'Verkäufer-URL';
 $lang['enter_vendor_url'] = 'Verkäufer-URL [a-zA-Z0-9]';
@@ -220,9 +221,11 @@ $lang['enter_vendor_website'] = 'Adresse deiner Webseite eingeben';
 $lang['vendor_telegram'] = 'Telegram';
 $lang['enter_vendor_telegram'] = 'Telegram Adresse eingeben';
 $lang['vendor_description'] = 'Beschreibung';
-$lang['enter_vendor_description'] = 'Beschreibung über dich und deine Fähigkeiten eingeben';
+$lang['enter_vendor_description'] = 'Gib eine Beschreibung über dich und deine Fähigkeiten ein.';
 $lang['vendor_gender'] = 'Geschlecht';
 $lang['enter_vendor_gender'] = 'Geschlecht eingeben';
+$lang['vendor_gender_female'] = 'weiblich';
+$lang['vendor_gender_male'] = 'männlich';
 $lang['vendor_birthday'] = 'Geburtstag';
 $lang['enter_vendor_birthday'] = 'Geburtstag eingeben';
 $lang['vendor_details_updated'] = 'Verkäufer-Infos wurden aktualisiert.';

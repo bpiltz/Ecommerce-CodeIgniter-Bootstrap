@@ -1,4 +1,5 @@
 <?php 
+$lang['language_selector'] = 'Select language';
 $lang['products'] = 'Products';
 $lang['sort_by'] = 'Sort by';
 $lang['new'] = 'New';

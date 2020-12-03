@@ -15,6 +15,17 @@ class Vendorprofile_model extends CI_Model
         return $result->row_array();
     }
 
+    public function getTranslations($id)
+    {
+        $this->db->where('for_id', $id);
+        $query = $this->db->get('vendor_profile_translations');
+        $arr = array();
+        foreach ($query->result() as $row) {
+            $arr[$row->abbr]['description'] = $row->description;
+        }
+        return $arr;
+    }
+
     public function getVendorByUrlAddress($urlAddr)
     {
         $this->db->where('url', $urlAddr);
@@ -24,25 +35,58 @@ class Vendorprofile_model extends CI_Model
 
     public function saveNewVendorDetails($post, $vendor_id)
     {
-        $birthdate = DateTime::createFromFormat('d.m.Y', !empty($_POST['vendor_birthday']) ? trim($post['vendor_birthday']) : '');
+        $birthdate = DateTime::createFromFormat('d.m.Y', !empty($post['vendor_birthday']) ? trim($post['vendor_birthday']) : '');
         $birthdate = $birthdate->format('Y-m-d');
         if (!$this->db->where('id', $vendor_id)->update('vendors', array(
                 'name' => $post['vendor_name'],
                 'url' => trim($post['vendor_url']),
-                'street' => !empty($_POST['vendor_street']) ? trim($post['vendor_street']) : '',
-                'number' => !empty($_POST['vendor_number']) ? trim($post['vendor_number']) : '',
-                'city' => !empty($_POST['vendor_city']) ? trim($post['vendor_city']) : '',
-                'post_code' => !empty($_POST['vendor_post_code']) ? trim($post['vendor_post_code']) : '',
-                'country' => !empty($_POST['vendor_country']) ? trim($post['vendor_country']) : '',
-                'phone' => !empty($_POST['vendor_phone']) ? trim($post['vendor_phone']) : '',
-                'mobile' => !empty($_POST['vendor_mobile']) ? trim($post['vendor_mobile']) : '',
-                'website' => !empty($_POST['vendor_website']) ? trim($post['vendor_website']) : '',
-                'telegram' => !empty($_POST['vendor_telegram']) ? trim($post['vendor_telegram']) : '',
-                'surname' => !empty($_POST['vendor_surname']) ? trim($post['vendor_surname']) : '',
-                'gender' => !empty($_POST['vendor_gender']) ? trim($post['vendor_gender']) : '',
+                'street' => !empty($post['vendor_street']) ? trim($post['vendor_street']) : '',
+                'number' => !empty($post['vendor_number']) ? trim($post['vendor_number']) : '',
+                'city' => !empty($post['vendor_city']) ? trim($post['vendor_city']) : '',
+                'post_code' => !empty($post['vendor_post_code']) ? trim($post['vendor_post_code']) : '',
+                'country' => !empty($post['vendor_country']) ? trim($post['vendor_country']) : '',
+                'phone' => !empty($post['vendor_phone']) ? trim($post['vendor_phone']) : '',
+                'mobile' => !empty($post['vendor_mobile']) ? trim($post['vendor_mobile']) : '',
+                'website' => !empty($post['vendor_website']) ? trim($post['vendor_website']) : '',
+                'telegram' => !empty($post['vendor_telegram']) ? trim($post['vendor_telegram']) : '',
+                'surname' => !empty($post['vendor_surname']) ? trim($post['vendor_surname']) : '',
+                'gender' => !empty($post['vendor_gender']) ? trim($post['vendor_gender']) : '',
                 'birthday' => $birthdate
             ))) {
             log_message('error', print_r($this->db->error(), true));
+        }
+        $this->setVendorProfileTranslation($post,$vendor_id);
+    }
+
+    private function setVendorProfileTranslation($post, $id)
+    {
+        $i = 0;
+        $current_trans = $this->getTranslations($id, 'product');
+        foreach ($post['translations'] as $abbr) {
+            $arr = array();
+            $arr = array(
+                'description' => !empty($post['vendor_description'][$i]) ? trim($post['vendor_description'][$i]) : '',
+                'abbr' => $abbr,
+                'for_id' => $id
+            );
+
+            $emergency_insert = false;
+            if (!isset($current_trans[$abbr])) {
+                $emergency_insert = true;
+            }
+
+            if ($emergency_insert === false) {
+                $abbr = $arr['abbr'];
+                unset($arr['for_id'], $arr['abbr']);
+                if (!$this->db->where('abbr', $abbr)->where('for_id', $id)->update('vendor_profile_translations', $arr)) {
+                    log_message('error', print_r($this->db->error(), true));
+                }
+            } else {
+                if (!$this->db->insert('vendor_profile_translations', $arr)) {
+                    log_message('error', print_r($this->db->error(), true));
+                }
+            }
+            $i++;
         }
     }
 

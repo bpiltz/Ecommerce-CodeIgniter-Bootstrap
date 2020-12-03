@@ -23,6 +23,16 @@ class VENDOR_Controller extends MX_Controller
         $this->loginCheck();
         $this->setVendorInfo();
         $this->allowed_img_types = $this->config->item('allowed_img_types');
+
+        $this->load->model(array(
+            'admin/Languages_model',
+            ));
+
+        $trans_load = null;
+        if ($this->vendor_id) {
+            $trans_load = $this->Vendorprofile_model->getTranslations($this->vendor_id);
+        }
+
         $vars = array();
         $vars['vendor_name'] = $this->vendor_name;
         $vars['vendor_url'] = $this->vendor_url;
@@ -38,6 +48,8 @@ class VENDOR_Controller extends MX_Controller
         $vars['vendor_surname'] = $this->vendor_profile['vendor_surname'];
         $vars['vendor_gender'] = $this->vendor_profile['vendor_gender'];
         $vars['vendor_birthday'] = $this->vendor_profile['vendor_birthday'];
+        $vars['languages'] = $this->Languages_model->getLanguages();
+        $vars['trans_load'] = $trans_load;
         $this->load->vars($vars);
         if (isset($_POST['saveVendorDetails'])) {
             $this->saveNewVendorDetails();
@@ -82,7 +94,6 @@ class VENDOR_Controller extends MX_Controller
             $this->vendor_name = $array['name'];
             $this->vendor_url = $array['url'];
             $this->vendor_profile = array();
-            //var_dump($array);
             $this->vendor_profile['vendor_street'] = $array['street'];
             $this->vendor_profile['vendor_number'] = $array['number'];
             $this->vendor_profile['vendor_city'] = $array['city'];
