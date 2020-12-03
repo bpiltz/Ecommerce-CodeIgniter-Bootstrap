@@ -11,6 +11,7 @@ class Checkout extends MY_Controller
     {
         parent::__construct();
         $this->load->model('admin/Orders_model');
+        $this->load->model('vendor/Vendorprofile_model');
     }
 
     public function index()
@@ -47,12 +48,39 @@ class Checkout extends MY_Controller
                 }
             }
         }
+        $data['profile'] = $this->Vendorprofile_model->getVendorInfoFromEmail($_SESSION['logged_vendor']);
+        //$data['profile']['email'] = $_SESSION['logged_vendor'];
         $data['bank_account'] = $this->Orders_model->getBankAccountSettings();
         $data['cashondelivery_visibility'] = $this->Home_admin_model->getValueStore('cashondelivery_visibility');
         $data['paypal_email'] = $this->Home_admin_model->getValueStore('paypal_email');
         $data['bestSellers'] = $this->Public_model->getbestSellers();
+
         $this->render('checkout', $head, $data);
     }
+
+   private function setVendorInfo()
+    {
+        $this->load->model('Vendorprofile_model');
+        if (isset($_SESSION['logged_vendor'])) {
+            $array = $this->Vendorprofile_model->getVendorInfoFromEmail($_SESSION['logged_vendor']);
+            $this->vendor_id = $array['id'];
+            $this->vendor_name = $array['name'];
+            $this->vendor_url = $array['url'];
+            $this->vendor_profile = array();
+            $this->vendor_profile['vendor_street'] = $array['street'];
+            $this->vendor_profile['vendor_number'] = $array['number'];
+            $this->vendor_profile['vendor_city'] = $array['city'];
+            $this->vendor_profile['vendor_post_code'] = $array['post_code'];
+            $this->vendor_profile['vendor_country'] = $array['country'];
+            $this->vendor_profile['vendor_phone'] = $array['phone'];
+            $this->vendor_profile['vendor_mobile'] = $array['mobile'];
+            $this->vendor_profile['vendor_website'] = $array['website'];
+            $this->vendor_profile['vendor_telegram'] = $array['telegram'];
+            $this->vendor_profile['vendor_surname'] = $array['surname'];
+            $this->vendor_profile['vendor_gender'] = $array['gender'];
+            $this->vendor_profile['vendor_birthday'] = $array['birthday'];
+        }
+    }    
 
     private function setVendorOrders()
     {

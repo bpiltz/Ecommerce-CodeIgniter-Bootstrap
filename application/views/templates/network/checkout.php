@@ -49,31 +49,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="firstNameInput"><?= lang('first_name') ?> (<sup><?= lang('requires') ?></sup>)</label>
-                            <input id="firstNameInput" class="form-control" name="first_name" value="<?= @$_POST['first_name'] ?>" type="text" placeholder="<?= lang('first_name') ?>">
+                            <input id="firstNameInput" class="form-control" name="first_name" value="<?= null !== @$_POST['first_name'] ? @$_POST['first_name'] : $profile['surname'] ?>" type="text" placeholder="<?= lang('first_name') ?>">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="lastNameInput"><?= lang('last_name') ?> (<sup><?= lang('requires') ?></sup>)</label>
-                            <input id="lastNameInput" class="form-control" name="last_name" value="<?= @$_POST['last_name'] ?>" type="text" placeholder="<?= lang('last_name') ?>">
+                            <input id="lastNameInput" class="form-control" name="last_name" value="<?= null !== @$_POST['last_name'] ? @$_POST['last_name'] : $profile['name'] ?>" type="text" placeholder="<?= lang('last_name') ?>">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="emailAddressInput"><?= lang('email_address') ?> (<sup><?= lang('requires') ?></sup>)</label>
-                            <input id="emailAddressInput" class="form-control" name="email" value="<?= @$_POST['email'] ?>" type="text" placeholder="<?= lang('email_address') ?>">
+                            <input id="emailAddressInput" class="form-control" name="email" value="<?= null !== @$_POST['email'] ? @$_POST['email'] : $profile['email'] ?>" type="text" placeholder="<?= lang('email_address') ?>">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="phoneInput"><?= lang('phone') ?> (<sup><?= lang('requires') ?></sup>)</label>
-                            <input id="phoneInput" class="form-control" name="phone" value="<?= @$_POST['phone'] ?>" type="text" placeholder="<?= lang('phone') ?>">
+                            <input id="phoneInput" class="form-control" name="phone" value="<?= null !== @$_POST['phone'] ? @$_POST['phone'] : $profile['mobile'] ?>" type="text" placeholder="<?= lang('phone') ?>">
                         </div>
                         <div class="form-group col-sm-12">
                             <label for="addressInput"><?= lang('address') ?> (<sup><?= lang('requires') ?></sup>)</label>
-                            <textarea id="addressInput" name="address" class="form-control" rows="3"><?= @$_POST['address'] ?></textarea>
+                            <textarea id="addressInput" name="address" class="form-control" rows="3"><?= null !== @$_POST['address'] ? @$_POST['address'] : ($profile['street'].' '.$profile['number']) ?></textarea>
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="cityInput"><?= lang('city') ?> (<sup><?= lang('requires') ?></sup>)</label>
-                            <input id="cityInput" class="form-control" name="city" value="<?= @$_POST['city'] ?>" type="text" placeholder="<?= lang('city') ?>">
+                            <input id="cityInput" class="form-control" name="city" value="<?= null !== @$_POST['city'] ? @$_POST['city'] : $profile['city'] ?>" type="text" placeholder="<?= lang('city') ?>">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="postInput"><?= lang('post_code') ?></label>
-                            <input id="postInput" class="form-control" name="post_code" value="<?= @$_POST['post_code'] ?>" type="text" placeholder="<?= lang('post_code') ?>">
+                            <input id="postInput" class="form-control" name="post_code" value="<?= null !== @$_POST['post_code'] ? @$_POST['post_code'] : $profile['post_code'] ?>" type="text" placeholder="<?= lang('post_code') ?>">
                         </div>
                         <div class="form-group col-sm-12">
                             <label for="notesInput"><?= lang('notes') ?></label>
