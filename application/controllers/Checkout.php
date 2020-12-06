@@ -16,6 +16,10 @@ class Checkout extends MY_Controller
 
     public function index()
     {
+        if (!isset($_SESSION['logged_vendor'])) {
+            redirect(LANG_URL . '/vendor/login');
+        }
+
         $data = array();
         $head = array();
         $arrSeo = $this->Public_model->getSeo('checkout');
@@ -48,8 +52,10 @@ class Checkout extends MY_Controller
                 }
             }
         }
-        $data['profile'] = $this->Vendorprofile_model->getVendorInfoFromEmail($_SESSION['logged_vendor']);
-        //$data['profile']['email'] = $_SESSION['logged_vendor'];
+
+        if (isset($_SESSION['logged_vendor'])) {
+            $data['profile'] = $this->Vendorprofile_model->getVendorInfoFromEmail($_SESSION['logged_vendor']);
+        }
         $data['bank_account'] = $this->Orders_model->getBankAccountSettings();
         $data['cashondelivery_visibility'] = $this->Home_admin_model->getValueStore('cashondelivery_visibility');
         $data['paypal_email'] = $this->Home_admin_model->getValueStore('paypal_email');
