@@ -44,7 +44,7 @@ body {font-family: 'Roboto', sans-serif;}
 nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-top: 15px;margin-left: 15px;}
 #home-slider {height: 600px; margin-bottom: 30px;}
 #home-slider .item {background-size: 100%; background-repeat: no-repeat; height: 600px;}
-#home-slider .item h3 { font-size:60px; font-family: 'Lobster Two', cursive; margin-top: 200px;}
+#home-slider .item h3 { font-size:60px; margin-top: 200px;}
 #home-slider .item h3 a {color:#90815b;}
 #home-slider .item h3 a:hover {text-decoration: none;}
 #home-slider .item .description {color: #6d604c;font-size: 20px;line-height: 20px;margin-bottom: 20px;}
@@ -57,7 +57,7 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 .home-banners .single-banner a {display: block;position: relative;}
 .home-banners .single-banner img {transform: scale(1);transition: all .5s; max-width: 100%;height: auto;}
 .new-products {background-color: #f6f7fb; padding-top: 70px; padding-bottom: 70px;}
-.new-products h3 {text-align: center; font-family: 'Lobster Two', cursive; font-size:32px; color:#4c4c4c; font-weight: bold;text-transform: capitalize;}
+.new-products h3 {text-align: center; font-size:32px; color:#4c4c4c; font-weight: bold;text-transform: capitalize;}
 .new-products .carousel-inner h1 {font-size:18px; text-align: center; font-weight: bold;}
 .new-products .carousel-inner a { color:#4c4c4c; text-decoration: none;}
 .new-products .carousel-inner .price {display: block; text-align: center; color:#98ab3f; font-weight: bold;}
@@ -65,9 +65,9 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 .new-products .add-to-cart { display: block; width: 150px; margin: 0 auto; background: rgba(0, 0, 0, 0) none repeat scroll 0 0;border: 1px solid #e2dfdb;border-radius: 30px;color: #6d604c;font-size: 14px;font-weight: 700;padding: 11px 25px;text-transform: uppercase;transition: all .5s;}
 .new-products .add-to-cart:hover {background-color:#98ab3f; color:#fff;}
 .blog-posts { padding-top: 70px; padding-bottom: 70px;}
-.blog-posts h3 {text-align: center; font-family: 'Lobster Two', cursive; font-size:32px; color:#4c4c4c; font-weight: bold;text-transform: capitalize;}
-.blog-posts .carousel-inner img {margin-bottom: 10px;}
-.blog-posts .carousel-inner h1 {font-size:24px; text-align: center; font-family: 'Lobster Two', cursive; margin: 0; margin-bottom: 10px;}
+.blog-posts h3 {text-align: center; font-size:32px; color:#4c4c4c; font-weight: bold;text-transform: capitalize;}
+.blog-posts .carousel-inner img {margin-bottom: 10px; margin-left: auto; margin-right: auto;}
+.blog-posts .carousel-inner h1 {font-size:24px; text-align: center; margin: 0; margin-bottom: 10px;}
 .blog-posts .carousel-inner a { color:#4c4c4c; text-decoration: none;} 
 .blog-posts .carousel-inner .description { color:#888888; text-decoration: none; text-align: center; font-size: 14px;} 
 .blog-posts .carousel-inner .time {display: block; text-align: center;} 
@@ -111,7 +111,7 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 .img-series {    bottom: -17px;    color: #fff;    font-size: 14px;    position: absolute;    right: 0;}
 .img-sl { cursor: pointer;}
 .orders-from-category {margin-bottom: 20px;}
-.orders-from-category h2 {color: #4c4c4c;font-size: 28px;font-weight: bold;text-transform: capitalize; font-family: 'Lobster Two', cursive; text-align: center;}
+.orders-from-category h2 {color: #4c4c4c;font-size: 28px;font-weight: bold;text-transform: capitalize; text-align: center;}
 .product-inner h3 {text-transform: uppercase; text-align: center;  font-weight: bold;  padding-top: 5px;margin: 5px 0;  margin-bottom: 5px;display: block;font-size: 16px;}
 .product-inner .price {display: block; text-align: center; color:#98ab3f; font-weight: bold;}
 .product-inner .add-to-cart { display: block; width: 150px; margin: 0 auto; background: rgba(0, 0, 0, 0) none repeat scroll 0 0;border: 1px solid #e2dfdb;border-radius: 30px;color: #6d604c;font-size: 12px; text-align:center; font-weight: 700;padding: 11px 25px;text-transform: uppercase;transition: all .5s;}
@@ -164,7 +164,7 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 #show-xs-nav { border : 1px solid #666; color : #666; font-size : 15px; padding : 3px; text-align : center; text-decoration : none; }
 #show-xs-nav span i { margin-left : 5px; }
 #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder, #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder:active, #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, #shop-page .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {color:#fff;}
-#products-side h1 {font-family: 'Lobster Two', cursive; margin: 0; margin-bottom: 20px;}
+#products-side h1 {margin: 0; margin-bottom: 20px;}
 .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover, .pagination > li > a, .pagination > li > span {color:#98ab3f;}
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {background-color: #98ab3f; border:1px solid #98ab3f; color:#fff;}
 footer .footer {background-color: #f4f4f4;}
