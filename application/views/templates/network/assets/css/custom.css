@@ -56,7 +56,7 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 .home-banners .single-banner {width: 50%;overflow: hidden;}
 .home-banners .single-banner a {display: block;position: relative;}
 .home-banners .single-banner img {transform: scale(1);transition: all .5s; max-width: 100%;height: auto;}
-.new-products {background-color: #f6f7fb; padding-top: 70px; padding-bottom: 70px;}
+.new-products {background-color: #f6f7fb; padding-top: 30px; padding-bottom: 70px;}
 .new-products h3 {text-align: center; font-size:32px; color:#4c4c4c; font-weight: bold;text-transform: capitalize;}
 .new-products .carousel-inner h1 {font-size:18px; text-align: center; font-weight: bold;}
 .new-products .carousel-inner a { color:#4c4c4c; text-decoration: none;}
@@ -64,10 +64,10 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 .new-products .carousel-control i {color:#98ab3f;}
 .new-products .add-to-cart { display: block; width: 150px; margin: 0 auto; background: rgba(0, 0, 0, 0) none repeat scroll 0 0;border: 1px solid #e2dfdb;border-radius: 30px;color: #6d604c;font-size: 14px;font-weight: 700;padding: 11px 25px;text-transform: uppercase;transition: all .5s;}
 .new-products .add-to-cart:hover {background-color:#98ab3f; color:#fff;}
-.blog-posts { padding-top: 70px; padding-bottom: 70px;}
+.blog-posts { padding-top: 0px; padding-bottom: 30px;}
 .blog-posts h3 {text-align: center; font-size:32px; color:#4c4c4c; font-weight: bold;text-transform: capitalize;}
 .blog-posts .carousel-inner img {margin-bottom: 10px; margin-left: auto; margin-right: auto;}
-.blog-posts .carousel-inner h1 {font-size:24px; text-align: center; margin: 0; margin-bottom: 10px;}
+.blog-posts .carousel-inner h1 {font-size:24px; text-align: center; margin: 0; margin-bottom: 10px; margin-top: 40px;}
 .blog-posts .carousel-inner a { color:#4c4c4c; text-decoration: none;} 
 .blog-posts .carousel-inner .description { color:#888888; text-decoration: none; text-align: center; font-size: 14px;} 
 .blog-posts .carousel-inner .time {display: block; text-align: center;} 
