@@ -48,14 +48,14 @@
                 <!--<div class="clearfix"></div> 
             </div>-->
             <div class="row header">
-                <div class="col-md-4 col-xs-12">
+                <div class="col-md-2 col-xs-12">
                     <div class="logo">
                         <a href="<?= LANG_URL ?>">
                             <img src="<?= base_url('attachments/site_logo/' . $sitelogo) ?>" alt="<?= $title ?>">
                         </a>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-10 col-xs-10">
+                <div class="col-md-9 col-sm-10 col-xs-10">
                     <div class="top">
                         <?php
                         if ($footerContactPhone != '') {
