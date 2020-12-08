@@ -112,9 +112,14 @@ class Auth extends VENDOR_Controller
             $vendor = $this->Vendorprofile_model->getVendorInfoFromEmail($_POST['u_email']);
             if ($vendor != null) {
                 $myDomain = $this->config->item('base_url');
-                $newPass = $this->Auth_model->updateVendorPassword($_POST['u_email']);
-                $this->sendmail->sendTo($_POST['u_email'], 'Admin', 'New password for ' . $myDomain, 'Hello, your new password is ' . $newPass);
-                $this->session->set_flashdata('login_error', lang('new_pass_sended'));
+                $email=md5($vendor['email']);
+                $pass=md5($vendor['password']);
+                $link="<a href='" . $myDomain . "vendor/change-password/" . $email . "/" . $pass . "'>Klicken um ein neues Passwort zu vergeben.</a>";
+                //echo $link;
+                
+                $this->sendmail->sendTo($_POST['u_email'], 'Admin', 'Reset password link for ' . 
+                    $myDomain, 'Hallo, <br/> hier der Link zum Rücksetzen des Passworts: <br/> <br/>' . $link);
+                $this->session->set_flashdata('link_sent', lang('new_pass_sended'));
                 redirect(LANG_URL . '/vendor/login');
             }
         }
@@ -130,7 +135,7 @@ class Auth extends VENDOR_Controller
         $this->load->view('_parts/footer_auth');
     }
 
-    public function change()
+    public function change($email = null, $pass = null)
     {
         $data = array();
         $head = array();
@@ -140,7 +145,7 @@ class Auth extends VENDOR_Controller
 
         if (isset($_POST['change'])) {
             $errors = array();
-            if (mb_strlen(trim($_POST['u_password'])) == 0) {
+            if (mb_strlen(trim($_POST['u_password'])) == 0 && isset(_SESSION['logged_vendor'])) {
                 $errors[] = lang('please_enter_old_password');
             }
             if (mb_strlen(trim($_POST['u_password_new'])) == 0) {
@@ -153,7 +158,13 @@ class Auth extends VENDOR_Controller
                 $errors[] = lang('passwords_dont_match');
             }
 
-            $_POST['u_email'] = $_SESSION['logged_vendor'];
+            if ($email && $pass) {
+                $result = $this->Vendorprofile_model->getVendorInfoFromHashedCredentials($email,$pass);
+                $_POST['u_email'] = $result['email'];
+            } else {
+                $_POST['u_email'] = $_SESSION['logged_vendor'];
+            }
+
             if (!empty($errors)) {
                 $this->session->set_flashdata('error_change', $errors);
             } else if ($this->Auth_model->checkVendorExsists($_POST)){
@@ -166,9 +177,15 @@ class Auth extends VENDOR_Controller
             }            
 
         }
-        $this->load->view('_parts/header', $head);
-        $this->load->view('auth/change_pass', $data);
-        $this->load->view('_parts/footer');
+        if ($email && $pass) {
+            $this->load->view('_parts/header_auth', $head);
+            $this->load->view('auth/change_pass', $data);
+            $this->load->view('_parts/footer_auth');
+        } else {
+            $this->load->view('_parts/header', $head);
+            $this->load->view('auth/change_pass', $data);
+            $this->load->view('_parts/footer');
+        }
     }
 
 }

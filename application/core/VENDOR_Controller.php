@@ -72,11 +72,20 @@ class VENDOR_Controller extends MX_Controller
         if (preg_match('/[a-zA-Z]{2}/', $urlString)) {
             $urlString = preg_replace('/^[a-zA-Z]{2}\//', '', $urlString);
         }
-        if (!isset($_SESSION['logged_vendor']) && !in_array($urlString, $authPages)) {
+
+        if (!isset($_SESSION['logged_vendor']) && !in_array($urlString, $authPages) && !$this->isChangePasswordLink($urlString)) {
             redirect(LANG_URL . '/vendor/login');
         } else if (isset($_SESSION['logged_vendor']) && in_array($urlString, $authPages)) {
             redirect(LANG_URL . '/vendor/me');
         }
+    }
+
+    private function isChangePasswordLink($urlString){
+        $urlSplit=explode('/', $urlString);
+        if(strpos($urlString, 'vendor/change-password', 0) !== false && count($urlSplit) == 4){
+            return true;
+        } 
+        return false;
     }
 
     protected function setLoginSession($email, $remember_me)

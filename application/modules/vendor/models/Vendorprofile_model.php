@@ -15,6 +15,14 @@ class Vendorprofile_model extends CI_Model
         return $result->row_array();
     }
 
+    public function getVendorInfoFromHashedCredentials($email,$pass)
+    {
+        $this->db->where('md5(email)', $email);
+        $this->db->where('md5(password)', $pass);
+        $result = $this->db->get('vendors');
+        return $result->row_array();
+    }
+
     public function getTranslations($id)
     {
         $this->db->where('for_id', $id);
