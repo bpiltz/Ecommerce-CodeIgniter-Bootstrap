@@ -135,7 +135,7 @@ nav .navbar-header .menu-text-xs {text-transform: uppercase;float: left;margin-t
 #contacts #map {margin-bottom: 30px; height: 400px;  width: 100%;}
 #contacts .contact-details {background-color: #f4f4f4; padding: 20px;}
 #contacts .contact-form {background-color: #f4f4f4; padding: 20px; }
-#contacts .contact-form .form-control {width: 100%; box-shadow: none;  border-radius: 0; height: 35px;border: 1px solid #ebebeb;margin-bottom: 30px;padding-left: 10px;}
+#contacts .contact-form .form-control {width: 100%; box-shadow: none;  border-radius: 0; border: 1px solid #ebebeb;margin-bottom: 30px;padding-left: 10px;}
 #contacts .contact-form label { font-size:12px; font-weight: normal; color:#444;}
 .blog-list .caption { color : #666; }
 .blog-list small span { margin-right : 7px; }
@@ -172,7 +172,7 @@ footer .footer {background-color: #f4f4f4;}
 .footer img { max-width : 100%; }
 .footer h3 { border-bottom : 1px solid #BAC1C8; color: #333; font-size : 18px; font-weight : 600; line-height : 27px; padding : 40px 0 10px; text-transform : uppercase; }
 .footer ul { color : #7F8C8D; list-style-type : none; margin-left : 0; margin-top : 15px; padding-left : 0; }
-.footer ul li a { display : block; padding : 0 0 5px 0; }
+.footer ul li a { padding : 0 0 5px 0; }
 .footer a, .footer p { color : #78828D; }
 .footer p , .footer ul { font-size : 13px; }
 footer .footer-bottom { padding-top: 20px; padding-bottom: 20px; border-bottom: 2px solid #e5e5e5; }

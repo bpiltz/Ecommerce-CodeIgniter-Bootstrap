@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             ?>
                                             <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                         <?php } else { ?>
-                                            <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                            <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
                                         <?php } ?>
                                         <a href="javascript:void(0);" data-categorie-id="<?= $page['id'] ?>" class="go-category left-side <?= isset($_GET['category']) && $_GET['category'] == $page['id'] ? 'selected' : '' ?>">
                                             <?= $page['name'] ?>
@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </li>
                     </ul>
                 </div>
-            <?php } if ($shippingOrder != 0 && $shippingOrder != null) { ?>
+            <?php } if ($shippingOrder != 0 && $shippingOrder != null && false) { ?>
                 <div class="filter-sidebar">
                     <div class="title">
                         <span><?= lang('freeShippingHeader') ?></span>

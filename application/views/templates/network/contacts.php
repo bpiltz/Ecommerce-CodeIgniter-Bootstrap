@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php }
                 ?> 
                 <div class="contact-form">
-                    <legend><?= lang('contact_details') ?></legend>
+                    <legend><?= lang('contact_form') ?></legend>
                     <form method="POST" action=""> 
                         <div class="form-group">
                             <label for="name">

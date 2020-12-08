@@ -37,18 +37,15 @@
                     <ul class="footer-icon">
                         <?php if ($footerContactAddr != '') { ?>
                             <li>
-                                <span class="pull-left"><i class="fa fa-map-marker"></i></span> 
-                                <span class="pull-left f-cont-info"> <?= $footerContactAddr ?></span> 
+                                <i class="fa fa-map-marker"></i>&nbsp<?= $footerContactAddr ?>
                             </li>
                         <?php }if ($footerContactPhone != '') { ?>
                             <li>
-                                <span class="pull-left"><i class="fa fa-phone"></i></span> 
-                                <span class="pull-left f-cont-info"> <?= $footerContactPhone ?></span> 
+                                <i class="fa fa-phone"></i>&nbsp<?= $footerContactPhone ?>
                             </li>
                         <?php } if ($footerContactEmail != '') { ?>
                             <li>
-                                <span class="pull-left"><i class="fa fa-envelope"></i></span> 
-                                <span class="pull-left f-cont-info"><a href="mailto:<?= $footerContactEmail ?>"><?= $footerContactEmail ?></a></span>
+                                <i class="fa fa-envelope"></i>&nbsp<a href="mailto:<?= $footerContactEmail ?>"><?= $footerContactEmail ?></a>
                             </li>
                         <?php } ?>
                     </ul>
