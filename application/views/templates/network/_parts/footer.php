@@ -1,18 +1,18 @@
 <footer>
     <div class="footer" id="footer">
         <div class="container">
-            <div class="row">
-                <?php if (!empty($dynPages)) {?>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
+            <div class="row">                
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 f-col">
+                    <?php if (!empty($dynPages)) {?>
                     <h3><?= lang('about_us') ?></h3>
                     <ul>
                         <?php foreach ($dynPages as $addonPage) { ?>
                         <li><a href="<?= LANG_URL . '/page/' . $addonPage['pname'] ?> " class="go-category"><?= mb_ucfirst($addonPage['lname']) ?></a></li>
                         <?php } ?>
                     </ul>
+                    <?php } ?>
                 </div>
-                <?php } ?>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 f-col">
                     <h3><?= lang('pages') ?></h3>
                     <ul>
                         <li><a href="<?= base_url() ?>"><?= lang('home') ?> </a></li>
@@ -20,7 +20,7 @@
                         <li><a href="<?= LANG_URL . '/contacts' ?>"><?= lang('contacts') ?> </a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 f-col">
                     <h3><?= lang('categories') ?></h3>
                     <?php if (!empty($footerCategories)) { ?>
                         <ul>
@@ -32,7 +32,7 @@
                         <p><?= lang('no_categories') ?></p>
                     <?php } ?>
                 </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 f-col">
                     <h3><?= lang('contacts') ?></h3>
                     <ul class="footer-icon">
                         <?php if ($footerContactAddr != '') { ?>
@@ -53,7 +53,7 @@
                         <?php } ?>
                     </ul>
                 </div>
-                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 f-col">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 f-col">
                     <h3><?= lang('newsletter') ?></h3>
                     <ul>
                         <li>
