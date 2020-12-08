@@ -48,4 +48,16 @@ class Auth_model extends CI_Model
         return $newPass;
     }
 
+    public function changeVendorPassword($post)
+    {
+        $newPass = $post['u_password_new'];
+        $email = $post['u_email'];
+        $this->db->where('email', $email);
+        if (!$this->db->update('vendors', ['password' => password_hash($newPass, PASSWORD_DEFAULT)])) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+            return false;
+        }
+        return true;
+    }
 }

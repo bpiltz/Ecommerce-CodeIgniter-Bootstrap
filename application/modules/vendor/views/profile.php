@@ -1,10 +1,9 @@
-<?php
-if ($this->session->flashdata('result_delete')) {
-    ?> 
+<?php if ($this->session->flashdata('result_delete')) { ?> 
     <div class="alert alert-success"><?= $this->session->flashdata('result_delete') ?></div> 
-    <?php
-}
-?>
+<?php } ?>
+<?php if ($this->session->flashdata('update_vend_details')) { ?>
+    <div class="alert alert-success"><?= $this->session->flashdata('update_vend_details') ?></div>
+<?php } ?>
 <script src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
 <div class="row"> 
     <div class="col-md-6 col-md-offset-3">
@@ -104,7 +103,10 @@ if ($this->session->flashdata('result_delete')) {
                 </div>        
                 <div class="text-center submit-settings">
                     <button type="submit" name="saveVendorDetails" class="btn btn-green btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;<?= lang('save') ?></button>
-                </div>       
+                </div>
+                <div class="form-group">
+                    <label><a href="change-password"><?= lang('user_change_password_page') ?></a></label>          
+                </div>      
             </form>
         </div>        
     </div>

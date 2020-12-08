@@ -130,4 +130,45 @@ class Auth extends VENDOR_Controller
         $this->load->view('_parts/footer_auth');
     }
 
+    public function change()
+    {
+        $data = array();
+        $head = array();
+        $head['title'] = lang('user_change_password_page');
+        $head['description'] = lang('user_change_password_page');
+        $head['keywords'] = '';
+
+        if (isset($_POST['change'])) {
+            $errors = array();
+            if (mb_strlen(trim($_POST['u_password'])) == 0) {
+                $errors[] = lang('please_enter_old_password');
+            }
+            if (mb_strlen(trim($_POST['u_password_new'])) == 0) {
+                $errors[] = lang('please_enter_new_password');
+            }
+            if (mb_strlen(trim($_POST['u_password_repeat'])) == 0) {
+                $errors[] = lang('please_repeat_new_password');
+            }
+            if ($_POST['u_password_new'] != $_POST['u_password_repeat']) {
+                $errors[] = lang('passwords_dont_match');
+            }
+
+            $_POST['u_email'] = $_SESSION['logged_vendor'];
+            if (!empty($errors)) {
+                $this->session->set_flashdata('error_change', $errors);
+            } else if ($this->Auth_model->checkVendorExsists($_POST)){
+                if($this->Auth_model->changeVendorPassword($_POST)){
+                    $this->session->set_flashdata('update_vend_details', lang('vendor_password_updated'));
+                    redirect(LANG_URL . '/vendor/profile');
+                }
+            } else{
+                redirect(LANG_URL . '/vendor/login');
+            }            
+
+        }
+        $this->load->view('_parts/header', $head);
+        $this->load->view('auth/change_pass', $data);
+        $this->load->view('_parts/footer');
+    }
+
 }
