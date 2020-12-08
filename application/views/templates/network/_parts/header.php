@@ -193,19 +193,30 @@
                                             <?php
                                         }
                                     }
-                                    if (!empty($dynPages)) {
-                                        foreach ($dynPages as $addonPage) {
-                                            ?>
-                                            <li<?= urldecode(uri_string()) == 'page/' . $addonPage['pname'] || uri_string() == MY_LANGUAGE_ABBR . '/' . 'page/' . $addonPage['pname'] ? ' class="active"' : ''
-                                            ?>><a href="<?= LANG_URL . '/page/' . $addonPage['pname'] ?>"><?= mb_ucfirst($addonPage['lname']) ?></a></li>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
+                                    ?>
                                     <li<?= uri_string() == 'checkout' || uri_string() == MY_LANGUAGE_ABBR . '/checkout' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/checkout' ?>"><?= lang('checkout') ?></a></li>
                                     <li<?= uri_string() == 'shopping-cart' || uri_string() == MY_LANGUAGE_ABBR . '/shopping-cart' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/shopping-cart' ?>"><?= lang('shopping_cart') ?></a></li>
                                     <li<?= uri_string() == 'contacts' || uri_string() == MY_LANGUAGE_ABBR . '/contacts' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/contacts' ?>"><?= lang('contacts') ?></a></li>
                                     <li<?= uri_string() == 'vendor' || uri_string() == MY_LANGUAGE_ABBR . '/vendor' ? ' class="active"' : '' ?>><a href="<?= LANG_URL . '/vendor/me' ?>"><?= lang('network') ?></a></li>
+                                    <?php
+                                    if (!empty($dynPages)) {
+                                        ?>
+                                        <li<?= strpos(uri_string(), 'page/', 0) !== false ? ' class="active"' : '' ?>><a href="javascript:void(0);"><?= lang('about_us') ?> <i class="fa fa-chevron-down"></i></a>
+                                            <div class="megamenu">
+                                                <span>
+                                                <?php
+                                                foreach ($dynPages as $addonPage) {
+                                                    ?>
+                                                    <a href="<?= LANG_URL . '/page/' . $addonPage['pname'] ?> " class="go-category"><?= mb_ucfirst($addonPage['lname']) ?></a>
+                                                    <?php
+                                                }
+                                                ?>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
 

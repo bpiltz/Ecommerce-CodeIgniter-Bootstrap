@@ -2,16 +2,22 @@
     <div class="footer" id="footer">
         <div class="container">
             <div class="row">
+                <?php if (!empty($dynPages)) {?>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
                     <h3><?= lang('about_us') ?></h3>
-                    <p><?= $footerAboutUs ?></p>
+                    <ul>
+                        <?php foreach ($dynPages as $addonPage) { ?>
+                        <li><a href="<?= LANG_URL . '/page/' . $addonPage['pname'] ?> " class="go-category"><?= mb_ucfirst($addonPage['lname']) ?></a></li>
+                        <?php } ?>
+                    </ul>
                 </div>
+                <?php } ?>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
                     <h3><?= lang('pages') ?></h3>
                     <ul>
-                        <li><a href="<?= base_url() ?>">» <?= lang('home') ?> </a></li>
-                        <li><a href="<?= LANG_URL . '/checkout' ?>">» <?= lang('checkout') ?> </a></li>
-                        <li><a href="<?= LANG_URL . '/contacts' ?>">» <?= lang('contacts') ?> </a></li>
+                        <li><a href="<?= base_url() ?>"><?= lang('home') ?> </a></li>
+                        <li><a href="<?= LANG_URL . '/checkout' ?>"><?= lang('checkout') ?> </a></li>
+                        <li><a href="<?= LANG_URL . '/contacts' ?>"><?= lang('contacts') ?> </a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6 f-col">
