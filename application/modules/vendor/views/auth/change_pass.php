@@ -11,7 +11,7 @@
             <div class="vendor-login">
                 <h1><?= lang('user_set_password_page') ?></h1><br>
                 <form method="POST" action="">
-                    <?php if(isset(_SESSION['logged_vendor'])){ ?>
+                    <?php if(isset($_SESSION['logged_vendor'])){ ?>
                         <input type="password" name="u_password" placeholder="<?= lang('password_original') ?>">
                     <?php } ?>
                     <input type="password" name="u_password_new" placeholder="<?= lang('password_new') ?>">

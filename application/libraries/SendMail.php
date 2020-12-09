@@ -27,7 +27,7 @@ class SendMail
     {
         $this->mail->setFrom('email@example.com', 'My Name');
         $this->mail->addAddress($toEmail, $recipientName);
-        //$this->mail->isHTML(true); 
+        $this->mail->isHTML(true); 
         $this->mail->Subject = $subject;
         $this->mail->Body = $msg;
         if (!$this->mail->send()) {
