@@ -118,7 +118,8 @@ class Auth extends VENDOR_Controller
                 //echo $link;
                 
                 $this->sendmail->sendTo($_POST['u_email'], 'Admin', 'Reset password link for ' . 
-                    $myDomain, 'Hallo, <br/> hier der Link zum Rücksetzen des Passworts: <br/> <br/>' . $link);
+                    $myDomain, 'Hallo, <br/> <br/>hier der Link zum Rücksetzen des Passworts: <br/> <br/>' . $link . 
+                    '<br/> <br/> Dein Ortenau Netzwerk e.V.');
                 $this->session->set_flashdata('link_sent', lang('new_pass_sended'));
                 redirect(LANG_URL . '/vendor/login');
             }
@@ -145,8 +146,10 @@ class Auth extends VENDOR_Controller
 
         if (isset($_POST['change'])) {
             $errors = array();
-            if (isset($_SESSION['logged_vendor']) && mb_strlen(trim($_POST['u_password'])) == 0) {
-                $errors[] = lang('please_enter_old_password');
+            if (isset($_SESSION['logged_vendor'])) {
+                if(mb_strlen(trim($_POST['u_password'])) == 0) {
+                    $errors[] = lang('please_enter_old_password');
+                }
             }
             if (mb_strlen(trim($_POST['u_password_new'])) == 0) {
                 $errors[] = lang('please_enter_new_password');
@@ -160,7 +163,11 @@ class Auth extends VENDOR_Controller
 
             if ($email && $pass) {
                 $result = $this->Vendorprofile_model->getVendorInfoFromHashedCredentials($email,$pass);
-                $_POST['u_email'] = $result['email'];
+                if($result === NULL){
+                    $errors[] = lang('vendor_change_password_link_error');
+                }else{
+                    $_POST['u_email'] = $result['email'];
+                }
             } else {
                 $_POST['u_email'] = $_SESSION['logged_vendor'];
             }

@@ -169,6 +169,7 @@ class CI_Log {
 	 */
 	public function write_log($level, $msg)
 	{
+
 		if ($this->_enabled === FALSE)
 		{
 			return FALSE;
@@ -216,6 +217,7 @@ class CI_Log {
 		}
 
 		$message .= $this->_format_line($level, $date, $msg);
+		// echo $message;
 
 		for ($written = 0, $length = self::strlen($message); $written < $length; $written += $result)
 		{
