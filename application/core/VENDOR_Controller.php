@@ -116,7 +116,7 @@ class VENDOR_Controller extends MX_Controller
             $this->vendor_profile['vendor_telegram'] = $array['telegram'];
             $this->vendor_profile['vendor_surname'] = $array['surname'];
             $this->vendor_profile['vendor_gender'] = $array['gender'];
-            $this->vendor_profile['vendor_birthday'] = $array['birthday'];
+            $this->vendor_profile['vendor_birthday'] = $array['birthday'] == '0000-00-00' ? '' : $array['birthday'];
         }
     }
 

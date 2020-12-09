@@ -99,7 +99,7 @@
                 </div>        
                 <div class="form-group">
                     <label><?= lang('vendor_birthday') ?></label>
-                    <input class="form-control datepicker" value="<?= date( 'd.m.Y', strtotime($vendor_birthday)) ?>" name="vendor_birthday">
+                    <input class="form-control datepicker" value="<?= $vendor_birthday == '' ? '' : date( 'd.m.Y', strtotime($vendor_birthday)) ?>" name="vendor_birthday">
                 </div>        
                 <div class="text-center submit-settings">
                     <button type="submit" name="saveVendorDetails" class="btn btn-green btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;<?= lang('save') ?></button>

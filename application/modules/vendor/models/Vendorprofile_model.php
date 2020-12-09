@@ -43,8 +43,13 @@ class Vendorprofile_model extends CI_Model
 
     public function saveNewVendorDetails($post, $vendor_id)
     {
+        $updated_at = date("Y-m-d H:i:s");
         $birthdate = DateTime::createFromFormat('d.m.Y', !empty($post['vendor_birthday']) ? trim($post['vendor_birthday']) : '');
-        $birthdate = $birthdate->format('Y-m-d');
+        if($birthdate) {
+            $birthdate = $birthdate->format('Y-m-d');
+        }else{
+            $birthdate = '';
+        }
         if (!$this->db->where('id', $vendor_id)->update('vendors', array(
                 'name' => $post['vendor_name'],
                 'url' => trim($post['vendor_url']),
@@ -59,7 +64,8 @@ class Vendorprofile_model extends CI_Model
                 'telegram' => !empty($post['vendor_telegram']) ? trim($post['vendor_telegram']) : '',
                 'surname' => !empty($post['vendor_surname']) ? trim($post['vendor_surname']) : '',
                 'gender' => !empty($post['vendor_gender']) ? trim($post['vendor_gender']) : '',
-                'birthday' => $birthdate
+                'birthday' => $birthdate,
+                'updated_at' => $updated_at
             ))) {
             log_message('error', print_r($this->db->error(), true));
         }
