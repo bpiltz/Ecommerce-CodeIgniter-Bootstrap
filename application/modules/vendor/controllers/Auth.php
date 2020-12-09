@@ -43,7 +43,7 @@ class Auth extends VENDOR_Controller
                     $remember_me = true;
                 }
                 $this->setLoginSession($_POST['u_email'], $remember_me);
-                redirect(LANG_URL . '/vendor/me');
+                redirect(LANG_URL . '/vendor/vendors');
             }
         }
         $this->load->view('_parts/header_auth', $head);
@@ -71,7 +71,7 @@ class Auth extends VENDOR_Controller
                 redirect(LANG_URL . '/vendor/register');
             } else {
                 $this->setLoginSession($_POST['u_email'], false);
-                redirect(LANG_URL . '/vendor/me');
+                redirect(LANG_URL . '/vendor/vendors');
             }
         }
         $this->load->view('_parts/header_auth', $head);
