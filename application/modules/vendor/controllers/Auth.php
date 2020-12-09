@@ -145,7 +145,7 @@ class Auth extends VENDOR_Controller
 
         if (isset($_POST['change'])) {
             $errors = array();
-            if (mb_strlen(trim($_POST['u_password'])) == 0 && isset(_SESSION['logged_vendor'])) {
+            if (isset($_SESSION['logged_vendor']) && mb_strlen(trim($_POST['u_password'])) == 0) {
                 $errors[] = lang('please_enter_old_password');
             }
             if (mb_strlen(trim($_POST['u_password_new'])) == 0) {
