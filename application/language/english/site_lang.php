@@ -233,6 +233,7 @@ $lang['vendor_birthday'] = 'Birthday';
 $lang['enter_vendor_birthday'] = 'Enter Birthday';
 $lang['vendor_details_updated'] = 'Vendor information has been updated';
 $lang['vendor_password_updated'] = 'Password has been updated.';
+$lang['vendor_change_password_error'] = 'Could not find matching account.';
 $lang['vendor_url_taken'] = 'The address is busy';
 $lang['time_created'] = 'Date of creation';
 $lang['order_type'] = 'Order type';

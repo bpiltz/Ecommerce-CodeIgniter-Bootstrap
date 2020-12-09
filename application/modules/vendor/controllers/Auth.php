@@ -115,7 +115,7 @@ class Auth extends VENDOR_Controller
                 $email=md5($vendor['email']);
                 $pass=md5($vendor['password']);
                 $link="<a href='" . $myDomain . "vendor/change-password/" . $email . "/" . $pass . "'>Klicken um ein neues Passwort zu vergeben.</a>";
-                //echo $link;
+                // echo $link;
                 
                 $this->sendmail->sendTo($_POST['u_email'], 'Admin', 'Reset password link for ' . 
                     $myDomain, 'Hallo, <br/> <br/>hier der Link zum Rücksetzen des Passworts: <br/> <br/>' . $link . 
@@ -164,21 +164,22 @@ class Auth extends VENDOR_Controller
             if ($email && $pass) {
                 $result = $this->Vendorprofile_model->getVendorInfoFromHashedCredentials($email,$pass);
                 if($result === NULL){
-                    $errors[] = lang('vendor_change_password_link_error');
+                    $errors[] = lang('vendor_change_password_error');
                 }else{
                     $_POST['u_email'] = $result['email'];
                 }
             } else {
-                $_POST['u_email'] = $_SESSION['logged_vendor'];
+                $_POST['u_email'] = $_SESSION['logged_vendor']; 
+                if(!$this->Auth_model->checkVendorExsists($_POST)){
+                    $errors[] = lang('vendor_change_password_error');
+                } 
             }
 
             if (!empty($errors)) {
                 $this->session->set_flashdata('error_change', $errors);
-            } else if ($this->Auth_model->checkVendorExsists($_POST)){
-                if($this->Auth_model->changeVendorPassword($_POST)){
-                    $this->session->set_flashdata('update_vend_details', lang('vendor_password_updated'));
-                    redirect(LANG_URL . '/vendor/profile');
-                }
+            } else if ($this->Auth_model->changeVendorPassword($_POST)){
+                $this->session->set_flashdata('update_vend_details', lang('vendor_password_updated'));
+                redirect(LANG_URL . '/vendor/profile');
             } else{
                 redirect(LANG_URL . '/vendor/login');
             }            
