@@ -199,6 +199,7 @@ $lang['vendor_sure_to_del_product'] = 'Sicher, dass Sie das Produkt löschen wol
 $lang['vendor_product_deleted'] = 'Produkt gelöscht';
 $lang['vendor_view'] = 'Verkäufer-Ansicht';
 $lang['vendor'] = 'Verkäufer';
+$lang['vendor_vendors'] = 'Netzwerk';
 $lang['vendor_name'] = 'Nachname';
 $lang['enter_vendor_name'] = 'Nachname eingeben';
 $lang['vendor_surname'] = 'Vorname';

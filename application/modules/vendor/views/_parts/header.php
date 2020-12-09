@@ -28,7 +28,7 @@
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?= LANG_URL . '/vendor/me' ?>"><i class="mdi mdi-gauge"></i> <?= lang('vendor_dashboard') ?></a></li>
+                            <li><a href="<?= LANG_URL . '/vendor/vendors' ?>"><i class="mdi mdi-account-multiple"></i> <?= lang('vendor_vendors') ?></a></li>
                         </ul>
                         <ul class="nav navbar-nav">
                             <li><a href="<?= LANG_URL . '/vendor/add/product' ?>"><i class="mdi mdi-plus"></i> <?= lang('vendor_add_product') ?></a></li>
@@ -44,6 +44,9 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= LANG_URL . '/vendor/logout' ?>"><?= lang('vendor_logout') ?></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li><a href="<?= LANG_URL . '/vendor/me' ?>"><i class="mdi mdi-gauge"></i> <?= lang('vendor_dashboard') ?></a></li>
                         </ul>
                     </div>
                 </nav>
