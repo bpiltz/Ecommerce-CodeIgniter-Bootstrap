@@ -117,9 +117,9 @@ class Auth extends VENDOR_Controller
                 $link="<a href='" . $myDomain . "vendor/change-password/" . $email . "/" . $pass . "'>Klicken um ein neues Passwort zu vergeben.</a>";
                 // echo $link;
                 
-                $this->sendmail->sendTo($_POST['u_email'], 'Admin', 'Reset password link for ' . 
-                    $myDomain, 'Hallo, <br/> <br/>hier der Link zum Rücksetzen des Passworts: <br/> <br/>' . $link . 
-                    '<br/> <br/> Dein Ortenau Netzwerk e.V.');
+                $this->sendmail->sendTo($_POST['u_email'], 'Admin', 'Reset Passwort link für Konto bei ' . 
+                    $myDomain, 'Hallo liebes Mitglied, <br/> <br/>hier der Link zum Rücksetzen des Passworts: <br/> <br/>' . $link . 
+                    '<br/> <br/> Falls Du ihn nicht angefodert hast, kannst Du diese Nachricht ignorieren. <br/> <br/> Liebe Grüße,<br/> <br/>Dein Ortenau Netzwerk e.V.');
                 $this->session->set_flashdata('link_sent', lang('new_pass_sended'));
                 redirect(LANG_URL . '/vendor/login');
             }
