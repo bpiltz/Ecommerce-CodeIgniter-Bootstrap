@@ -8,7 +8,6 @@ class Contacts extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('email');
     }
 
     public function index()
@@ -18,9 +17,9 @@ class Contacts extends MY_Controller
         if (isset($_POST['message'])) {
             $result = $this->sendEmail();
             if ($result) {
-                $this->session->set_flashdata('resultSend', 'Email is sened!');
+                $this->session->set_flashdata('resultSend', lang('contact_send_success'));
             } else {
-                $this->session->set_flashdata('resultSend', 'Email send error!');
+                $this->session->set_flashdata('resultSend', lang('contact_send_error'));
             }
             redirect('contacts');
         }
@@ -36,16 +35,10 @@ class Contacts extends MY_Controller
     private function sendEmail()
     {
         $myEmail = $this->Home_admin_model->getValueStore('contactsEmailTo');
+
         if (filter_var($myEmail, FILTER_VALIDATE_EMAIL) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->load->library('email');
 
-            $this->email->from($_POST['email'], $_POST['name']);
-            $this->email->to($myEmail);
-
-            $this->email->subject($_POST['subject']);
-            $this->email->message($_POST['message']);
-
-            $this->email->send();
+            $this->sendmail->sendTo($myEmail, 'Kontaktformular', $_POST['subject'], 'Nachricht von:<br/>' . $_POST['name'] . ', <' . $_POST['email'] . '><br/><br/>Nachricht:<br/>' . $_POST['message']);
             return true;
         }
         return false;
