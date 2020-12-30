@@ -22,4 +22,17 @@ class Vendors_model extends CI_Model
         return $query->result();
     }
 
+    public function getVendor($id)
+    {
+        $this->db->order_by('vendors.name', 'asc');
+        $this->db->join('vendor_profile_translations', 'vendor_profile_translations.for_id = vendors.id', 'left');
+        
+        $where = "(`vendors.id` = " . $id  . ") ";
+        $where .= "AND `vendor_profile_translations`.`abbr` = '" . MY_DEFAULT_LANGUAGE_ABBR . "'";
+        $this->db->where($where);
+        $query = $this->db->select('vendors.*, vendor_profile_translations.description')->get('vendors', 1, 0);
+        //echo $this->db->last_query();
+        return $query->result();
+    }    
+
 }

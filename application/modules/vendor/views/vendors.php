@@ -28,13 +28,15 @@
 <?php
 foreach ($vendors as $row) { ?>
 	<div class="content">
-		<div class="row"> 
-		    <div class="col-md-3">
-		    	<?= $row->surname ?> <?= $row->name ?>, <?= $row->city ?>		    	
-	        </div>        
-		    <div class="col-md-9">
-		    	<?= $row->description ?>	    	
-	        </div>        
-	    </div>
+		<a href="<?= LANG_URL . '/vendor/' . $row->url ?>" class="item-info">
+			<div class="row"> 
+			    <div class="col-md-3">
+			    	<?= $row->surname ?> <?= $row->name ?>, <?= $row->city ?>		    	
+		        </div>        
+			    <div class="col-md-9">
+			    	<?= $row->description ?>	    	
+		        </div>        
+		    </div>
+		</a>
 	</div>
 <?php } ?>   
