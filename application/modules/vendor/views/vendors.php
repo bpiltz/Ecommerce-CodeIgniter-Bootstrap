@@ -34,7 +34,7 @@ foreach ($vendors as $row) { ?>
                     <?php
                     $image = 'attachments/profile_images/' . $row->profile_image;
                     if (empty($row->profile_image) || !file_exists($image)) {
-                        $image = 'attachments/no-image.png';
+                        $image = 'attachments/no-profile-image.png';
                     }
                     ?>
 			    	<img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:300px; margin-bottom: 5px;">

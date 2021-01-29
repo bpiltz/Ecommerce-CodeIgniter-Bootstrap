@@ -22,7 +22,7 @@
                     <?php
                     $image = 'attachments/profile_images/' . $vendor_image;
                     if (empty($vendor_image) || !file_exists($image)) {
-                        $image = 'attachments/no-image.png';
+                        $image = 'attachments/nno-profile-image.png';
                     }
                     ?>
                     <img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:300px; margin-bottom: 5px;">
