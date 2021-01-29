@@ -28,20 +28,36 @@
 <?php
 foreach ($vendors as $row) { ?>
 	<div class="content">
-		<a href="<?= LANG_URL . '/vendor/' . $row->url ?>" class="item-info">
+        <?php
+        if (empty($row->url))   {
+        	$href = "";
+        }else{
+        	$href = 'href="' . LANG_URL . '/vendor/' . $row->url . '"';
+        }
+        ?>
+		<a <?= $href ?> class="item-info">
 			<div class="row"> 
 			    <div class="col-md-3">
                     <?php
                     $image = 'attachments/profile_images/' . $row->profile_image;
+                    $imageWidth = 300;
                     if (empty($row->profile_image) || !file_exists($image)) {
                         $image = 'attachments/no-profile-image.png';
+                        $imageWidth = 80;
                     }
                     ?>
-			    	<img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:300px; margin-bottom: 5px;">
+			    	<img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:<?= $imageWidth ?>px; margin-bottom: 5px;">
 			    	<?= $row->surname ?> <?= $row->name ?>, <?= $row->city ?>		    	
 		        </div>        
 			    <div class="col-md-9">
-			    	<?= $row->description ?>	    	
+                    <?php
+                    if ((empty($row->description) && empty($row->name) && empty($row->surname)) || empty($row->url))   {
+                    	$description = $row->email;
+                    }else{
+                    	$description = $row->description;
+                    }
+                    ?>
+			    	<?= $description ?>	    	
 		        </div>        
 		    </div>
 		</a>

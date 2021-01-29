@@ -12,13 +12,18 @@ class Vendors_model extends CI_Model
     {
         $this->db->order_by('vendors.name', 'asc');
         $this->db->join('vendor_profile_translations', 'vendor_profile_translations.for_id = vendors.id', 'left');
-        
-        $where = "(`name` LIKE '%" . $search_name . "%' ESCAPE '!' OR `surname` LIKE '%" . $search_name . "%' ESCAPE '!') ";
-        $where .= "AND `vendor_profile_translations`.`description` LIKE '%" . $search_description . "%' ESCAPE '!' ";
-        $where .= "AND `vendor_profile_translations`.`abbr` = '" . MY_DEFAULT_LANGUAGE_ABBR . "'";
+        $where = "";
+        $where .= "(`name` LIKE '%" . $search_name . "%' ESCAPE '!' OR `surname` LIKE '%" . $search_name . "%' ESCAPE '!') AND ";
+        if($search_description != ""){
+            $where .= "`vendor_profile_translations`.`description` LIKE '%" . $search_description . "%' ESCAPE '!' AND ";    
+        }
+        $where .= "(`vendor_profile_translations`.`abbr` = '" . MY_DEFAULT_LANGUAGE_ABBR . "' OR `vendor_profile_translations`.`abbr` IS NULL)";
         $this->db->where($where);
         $query = $this->db->select('vendors.*, vendor_profile_translations.description')->get('vendors', $limit, $page);
         //echo $this->db->last_query();
+        //echo "<br/><br/><br/>";
+        //var_dump($query->result());
+        //die();
         return $query->result();
     }
 

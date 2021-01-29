@@ -11,7 +11,7 @@ if (!defined('BASEPATH')) {
 class Vendors extends VENDOR_Controller
 {
 
-    private $num_rows = 20;
+    private $num_rows = 100;
 
     public function __construct()
     {
