@@ -31,6 +31,13 @@ foreach ($vendors as $row) { ?>
 		<a href="<?= LANG_URL . '/vendor/' . $row->url ?>" class="item-info">
 			<div class="row"> 
 			    <div class="col-md-3">
+                    <?php
+                    $image = 'attachments/profile_images/' . $row->profile_image;
+                    if (empty($row->profile_image) || !file_exists($image)) {
+                        $image = 'attachments/no-image.png';
+                    }
+                    ?>
+			    	<img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:300px; margin-bottom: 5px;">
 			    	<?= $row->surname ?> <?= $row->name ?>, <?= $row->city ?>		    	
 		        </div>        
 			    <div class="col-md-9">

@@ -8,7 +8,7 @@
 <div class="row"> 
     <div class="col-md-6 col-md-offset-3">
         <div class="content">
-            <form  class="form-box"  method="POST" action="<?= LANG_URL . '/vendor/me' ?>">
+            <form  class="form-box"  method="POST" action="<?= LANG_URL . '/vendor/me' ?>" enctype="multipart/form-data">
                 <div class="form-group">
                     <label><?= lang('vendor_surname') ?></label>
                     <input type="text" class="form-control" value="<?= $vendor_surname ?>" name="vendor_surname" placeholder="<?= lang('enter_vendor_surname') ?>">
@@ -17,8 +17,19 @@
                     <label><?= lang('vendor_name') ?></label>
                     <input type="text" class="form-control" value="<?= $vendor_name ?>" name="vendor_name" placeholder="<?= lang('enter_vendor_name') ?>">
                 </div>
+                <div class="form-group">
+                    <label><?= lang('vendor_profile_image') ?></label>
+                    <?php
+                    $image = 'attachments/profile_images/' . $vendor_image;
+                    if (empty($vendor_image) || !file_exists($image)) {
+                        $image = 'attachments/no-image.png';
+                    }
+                    ?>
+                    <img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:300px; margin-bottom: 5px;">
+                    <input type="file" name="userfile">
+                </div>
                 <div class="form-group available-translations">
-                    <?= lang('language_selector') ?><br>
+                    <label><?= lang('language_selector') ?></label><br/>
                     <?php foreach ($languages as $language) { ?>
                         <button type="button" data-locale-change="<?= $language->abbr ?>" class="btn btn-default locale-change text-uppercase <?= $language->abbr == MY_DEFAULT_LANGUAGE_ABBR ? 'active' : '' ?>">
                             <img src="<?= base_url('attachments/lang_flags/' . $language->flag) ?>" alt="">

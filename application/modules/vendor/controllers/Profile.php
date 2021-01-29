@@ -20,8 +20,7 @@ class Profile extends VENDOR_Controller
     }
 
     public function index($page = 0)
-    {
- 
+    {   
         $data = array();
         $head = array();
         $head['title'] = lang('vendor_profile');
@@ -30,7 +29,7 @@ class Profile extends VENDOR_Controller
         $this->load->view('_parts/header', $head);
         $this->load->view('profile', $data);
         $this->load->view('_parts/footer');
-    }
+    } 
 
     public function deleteProduct($id)
     {

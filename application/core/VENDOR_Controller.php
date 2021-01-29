@@ -49,14 +49,29 @@ class VENDOR_Controller extends MX_Controller
             $vars['vendor_surname'] = $this->vendor_profile['vendor_surname'];
             $vars['vendor_gender'] = $this->vendor_profile['vendor_gender'];
             $vars['vendor_birthday'] = $this->vendor_profile['vendor_birthday'];
+            $vars['vendor_image'] = $this->vendor_profile['vendor_image'];
         }
         $vars['languages'] = $this->Languages_model->getLanguages();
         $vars['trans_load'] = $trans_load;
         $this->load->vars($vars);
         if (isset($_POST['saveVendorDetails'])) {
+            $_POST['vendor_image'] = $this->uploadImage();
             $this->saveNewVendorDetails();
         }
     }
+
+    private function uploadImage()
+    {
+        $config['upload_path'] = './attachments/profile_images/';
+        $config['allowed_types'] = $this->allowed_img_types;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload('userfile')) {
+            log_message('error', 'Image Upload Error: ' . $this->upload->display_errors());
+        }
+        $img = $this->upload->data();
+        return $img['file_name'];
+    }   
 
     protected function loginCheck()
     {
@@ -117,6 +132,7 @@ class VENDOR_Controller extends MX_Controller
             $this->vendor_profile['vendor_surname'] = $array['surname'];
             $this->vendor_profile['vendor_gender'] = $array['gender'];
             $this->vendor_profile['vendor_birthday'] = $array['birthday'] == '0000-00-00' ? '' : $array['birthday'];
+            $this->vendor_profile['vendor_image'] = $array['profile_image'];
         }
     }
 

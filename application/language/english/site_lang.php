@@ -236,6 +236,7 @@ $lang['vendor_details_updated'] = 'Vendor information has been updated';
 $lang['vendor_password_updated'] = 'Password has been updated.';
 $lang['vendor_change_password_error'] = 'Could not find any matching account.';
 $lang['vendor_url_taken'] = 'The address is busy';
+$lang['vendor_profile_image'] = 'Profile image';
 $lang['vendors_filter_name'] = 'Search in names';
 $lang['vendors_filter_description'] = 'Search in description';
 $lang['vendors_filter_submit'] = 'apply';

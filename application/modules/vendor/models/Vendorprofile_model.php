@@ -50,6 +50,7 @@ class Vendorprofile_model extends CI_Model
         }else{
             $birthdate = '';
         }
+
         if (!$this->db->where('id', $vendor_id)->update('vendors', array(
                 'name' => $post['vendor_name'],
                 'url' => trim($post['vendor_url']),
@@ -64,13 +65,16 @@ class Vendorprofile_model extends CI_Model
                 'telegram' => !empty($post['vendor_telegram']) ? trim($post['vendor_telegram']) : '',
                 'surname' => !empty($post['vendor_surname']) ? trim($post['vendor_surname']) : '',
                 'gender' => !empty($post['vendor_gender']) ? trim($post['vendor_gender']) : '',
+                'profile_image' => !empty($post['vendor_image']) ? trim($post['vendor_image']) : '',
                 'birthday' => $birthdate,
                 'updated_at' => $updated_at
             ))) {
             log_message('error', print_r($this->db->error(), true));
         }
+
         $this->setVendorProfileTranslation($post,$vendor_id);
     }
+
 
     private function setVendorProfileTranslation($post, $id)
     {
