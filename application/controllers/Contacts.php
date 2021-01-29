@@ -38,7 +38,7 @@ class Contacts extends MY_Controller
 
         if (filter_var($myEmail, FILTER_VALIDATE_EMAIL) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
-            $this->sendmail->sendTo($myEmail, 'Kontaktformular', $_POST['subject'], 'Nachricht von:<br/>' . $_POST['name'] . ', <' . $_POST['email'] . '><br/><br/>Nachricht:<br/>' . $_POST['message']);
+            $this->sendmail->sendTo($myEmail, 'Kontaktformular', $_POST['subject'], 'Nachricht von:<br/>Name: ' . $_POST['name'] . ', Email: ' . $_POST['email'] . '<br/><br/>Nachricht:<br/>' . $_POST['message']);
             return true;
         }
         return false;
