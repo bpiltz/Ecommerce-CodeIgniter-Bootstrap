@@ -7,3 +7,5 @@ test/
 /application/logs/*
 attachments/shop_images/*
 attachments/profile_images/*
+attachments/blog_images/*
+attachments/site_logo/*
