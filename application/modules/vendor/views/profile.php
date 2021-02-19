@@ -1,5 +1,5 @@
-<?php if ($this->session->flashdata('result_delete')) { ?> 
-    <div class="alert alert-success"><?= $this->session->flashdata('result_delete') ?></div> 
+<?php if ($this->session->flashdata('update_vend_err')) { ?> 
+    <div class="alert alert-danger"><?= implode('<br>', $this->session->flashdata('update_vend_err')) ?></div>
 <?php } ?>
 <?php if ($this->session->flashdata('update_vend_details')) { ?>
     <div class="alert alert-success"><?= $this->session->flashdata('update_vend_details') ?></div>

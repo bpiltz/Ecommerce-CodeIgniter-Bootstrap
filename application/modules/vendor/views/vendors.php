@@ -47,7 +47,14 @@ foreach ($vendors as $row) { ?>
                     }
                     ?>
 			    	<img src="<?= base_url($image) ?>" class="img-responsive" style="max-width:<?= $imageWidth ?>px; margin-bottom: 5px;">
-			    	<?= $row->surname ?> <?= $row->name ?>, <?= $row->city ?>		    	
+			    	<?php
+			    	if (!empty($row->city)) {
+			    		$infoString = $row->surname . ' ' . $row->name . ', ' . $row->city;
+					}else{
+						$infoString = $row->surname . ' ' . $row->name;
+					}
+                    ?>
+                    <?= $infoString ?>
 		        </div>        
 			    <div class="col-md-9">
                     <?php
