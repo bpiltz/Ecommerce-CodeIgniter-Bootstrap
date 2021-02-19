@@ -55,7 +55,11 @@ class VENDOR_Controller extends MX_Controller
         $vars['trans_load'] = $trans_load;
         $this->load->vars($vars);
         if (isset($_POST['saveVendorDetails'])) {
-            $_POST['vendor_image'] = $this->uploadImage();
+            if($_FILES['userfile']['name'] != ''){
+                $_POST['vendor_image'] = $this->uploadImage();    
+            }else{
+                $_POST['vendor_image'] = $this->vendor_profile['vendor_image'];    
+            }
             $this->saveNewVendorDetails();
         }
     }
