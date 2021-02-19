@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" value="<?= $vendor_surname ?>" name="vendor_surname" placeholder="<?= lang('enter_vendor_surname') ?>">
                 </div>        
                 <div class="form-group">
-                    <label><?= lang('vendor_name') ?></label>
+                    <label><?= lang('vendor_name') ?> *</label>
                     <input type="text" class="form-control" value="<?= $vendor_name ?>" name="vendor_name" placeholder="<?= lang('enter_vendor_name') ?>">
                 </div>
                 <div class="form-group">
@@ -57,7 +57,7 @@
                 }
                 ?>
                 <div class="form-group">
-                    <label><?= lang('vendor_url') ?></label>
+                    <label><?= lang('vendor_url') ?> *</label>
                     <input type="text" class="form-control" value="<?= $vendor_url ?>" name="vendor_url" placeholder="<?= lang('enter_vendor_url') ?>">
                 </div>      
                 <div class="row"> 
@@ -111,7 +111,11 @@
                 <div class="form-group">
                     <label><?= lang('vendor_birthday') ?></label>
                     <input class="form-control datepicker" value="<?= $vendor_birthday == '' ? '' : date( 'd.m.Y', strtotime($vendor_birthday)) ?>" name="vendor_birthday">
-                </div>        
+                </div>
+                <div class="form-group">
+                    <br/>
+                    <label>* <?= lang('requires') ?></label>
+                </div> 
                 <div class="text-center submit-settings">
                     <button type="submit" name="saveVendorDetails" class="btn btn-green btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;<?= lang('save') ?></button>
                 </div>
