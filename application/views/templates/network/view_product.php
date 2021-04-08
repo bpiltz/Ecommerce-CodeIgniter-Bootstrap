@@ -47,7 +47,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-sm-6"><b><?= lang('price') ?>:</b></div>
                     <div class="col-sm-6">
                     <?php if (isset($_SESSION['logged_vendor'])) { 
-                        echo $product['price'] . " " . CURRENCY;
+                        echo $product['price'];
+                        if(is_numeric($product['price'])){
+                            echo " " . CURRENCY;
+                        }
                     } else {
                         echo lang('register');
                     } ?>
