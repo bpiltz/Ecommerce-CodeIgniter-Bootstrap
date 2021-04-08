@@ -112,7 +112,7 @@ if (count($sliderProducts) > 0) {
                                         <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" class="img-responsive">
                                         <h1><?= $product['title'] ?></h1>
                                          <?php if (isset($_SESSION['logged_vendor'])) { ?>
-                                            <span class="price"><?= $product['price'] ?> &#8377;</span>
+                                            <span class="price"><?= $product['price']  . " " . CURRENCY?></span>
                                          <?php } ?>   
                                     </a>
                                     <?php if (isset($_SESSION['logged_vendor'])) { ?>
