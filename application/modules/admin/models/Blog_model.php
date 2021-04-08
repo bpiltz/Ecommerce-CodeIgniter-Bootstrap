@@ -48,6 +48,7 @@ class Blog_model extends CI_Model
         } else {
             $this->db->where('blog_translations.abbr', $lang);
         }
+        $this->db->order_by('blog_posts.id', 'desc');
         $query = $this->db->select('blog_posts.id, blog_translations.title, blog_translations.description, blog_posts.url, blog_posts.time, blog_posts.image')->get('blog_posts', $limit, $page);
         return $query->result_array();
     }

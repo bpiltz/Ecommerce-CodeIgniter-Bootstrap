@@ -58,6 +58,7 @@ class Public_model extends CI_Model
         $this->db->limit(5);
         $this->db->join('blog_translations', 'blog_translations.for_id = blog_posts.id', 'left');
         $this->db->where('blog_translations.abbr', MY_LANGUAGE_ABBR);
+        $this->db->order_by('blog_posts.id', 'desc');
         $query = $this->db->select('blog_posts.id, blog_translations.title, blog_translations.description, blog_posts.url, blog_posts.time, blog_posts.image')->get('blog_posts');
         return $query->result_array();
     }
@@ -75,6 +76,7 @@ class Public_model extends CI_Model
         }
         $this->db->join('blog_translations', 'blog_translations.for_id = blog_posts.id', 'left');
         $this->db->where('blog_translations.abbr', MY_LANGUAGE_ABBR);
+        $this->db->order_by('blog_posts.id', 'desc');
         $query = $this->db->select('blog_posts.id, blog_translations.title, blog_translations.description, blog_posts.url, blog_posts.time, blog_posts.image')->get('blog_posts', $limit, $page);
         return $query->result_array();
     }
