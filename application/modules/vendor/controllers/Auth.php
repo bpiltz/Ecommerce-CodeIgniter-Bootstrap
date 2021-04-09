@@ -122,6 +122,8 @@ class Auth extends VENDOR_Controller
                     '<br/> <br/> Falls Du ihn nicht angefodert hast, kannst Du diese Nachricht ignorieren. <br/> <br/> Liebe Grüße,<br/> <br/>Dein Ortenau Netzwerk e.V.');
                 $this->session->set_flashdata('link_sent', lang('new_pass_sended'));
                 redirect(LANG_URL . '/vendor/login');
+            }else{
+                $this->session->set_flashdata('userError', lang('vendor_change_password_error'));
             }
         }
 
