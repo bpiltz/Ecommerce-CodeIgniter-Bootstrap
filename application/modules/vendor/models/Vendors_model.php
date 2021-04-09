@@ -22,9 +22,20 @@ class Vendors_model extends CI_Model
         $query = $this->db->select('vendors.*, vendor_profile_translations.description')->get('vendors', $limit, $page);
         //echo $this->db->last_query();
         //echo "<br/><br/><br/>";
-        //var_dump($query->result());
-        //die();
-        return $query->result();
+        $result = $query->result();
+        $with_pic = array();
+        $no_pic = array();
+
+        for ($i = 0; $i < count($result); $i++)  {
+            if(strlen($result[$i]->profile_image) > 0){
+                array_push($with_pic, $result[$i]);
+            }else{
+                array_push($no_pic, $result[$i]);
+            }
+        }
+        $array_priorized = array_merge($with_pic, $no_pic);
+        
+        return $array_priorized;
     }
 
     public function getVendor($id)
