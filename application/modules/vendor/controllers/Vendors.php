@@ -27,16 +27,24 @@ class Vendors extends VENDOR_Controller
         $head['title'] = lang('vendor_vendors');
         $head['description'] = lang('vendor_vendors');
         $head['keywords'] = '';
+        if((!isset($_POST) || count($_POST) == 0) && isset($_SESSION['vendors_filter'])){
+            $_POST = $_SESSION['vendors_filter'];
+        }
         $filterName = isset($_POST['vendors_filter_name']) ? $_POST['vendors_filter_name'] : '';
         $filterNDescription = isset($_POST['vendors_filter_description']) ? $_POST['vendors_filter_description'] : '';
         $data['vendors'] = $this->Vendors_model->getVendors($this->num_rows, $page, $filterName, $filterNDescription);
         if(isset($_POST['vendors_filter_submit'])){
             $data['filter'] = $_POST;
+            $_SESSION['vendors_filter'] = $_POST;
         }else{
-            $data['filter'] = array(
-                'vendors_filter_name' => '', 
-                'vendors_filter_description' => ''
-            );
+            if($_SESSION['vendors_filter']){
+                $data['filter'] = $_SESSION['vendors_filter'];
+            }else{
+                $data['filter'] = array(
+                    'vendors_filter_name' => '', 
+                    'vendors_filter_description' => ''
+                );                
+            }
         }
         
         // var_dump($data);

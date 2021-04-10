@@ -2,6 +2,24 @@
 
 <div class="row"> 
     <div class="col-md-6 col-md-offset-3">
+    	<div class="row"> 
+	       	<div class="col-md-12">
+		        <div class="text-center submit-settings">
+		        	<?php
+		        	$previous = "javascript:history.go(-1)";
+					if(isset($_SERVER['HTTP_REFERER'])) {
+		    			$previous = $_SERVER['HTTP_REFERER'];
+					}
+					?>
+					<a href="<?= $previous ?>" class="vendor-back" >
+		            <button type="submit" name="vendors_filter_submit" class="btn btn-green btn-sm" >
+		              	<span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;<?= lang('back') ?>
+		            </button>
+		        </a>
+		        </div>
+        	</div>
+	    </div>
+
 	    <div class="content">
 	    	<div class="row"> 
 	       	    <div class="col-md-6">

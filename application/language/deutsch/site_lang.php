@@ -291,3 +291,4 @@ $lang['usr_order_phone'] = 'Tel.';
 $lang['user_order_products'] = 'Produkte';
 $lang['user_order_quantity'] = 'Menge:';
 $lang['usr_no_orders'] = 'keine Käufe getätigt.';
+$lang['back'] = 'zurück';
