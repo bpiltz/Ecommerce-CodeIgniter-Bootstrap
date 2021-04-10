@@ -21,7 +21,9 @@ html, body { height: 100%; color:#131313; background-color: #eef5f9;}
 .left-side ul li a { border-radius: 4px; color: #607d8b;  display: block;  font-size: 15px;  padding: 8px 35px 8px 15px; white-space: nowrap;}
 .left-side ul li a:hover {color: #26c6da; text-decoration: none;}
 .left-side ul li.active a, .btn-green {color:#ffffff; background-color: #26c6da; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);}
+.left-side ul li.active a, .btn-grey {color:#ffffff; background-color: #87959c; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);}
 .btn-green:hover {color:#ffffff;}
+.btn-grey:hover {color:#ffffff;}
 .left-side ul li a i {display: inline-block;   font-size: 21px;   height: 27px;   vertical-align: middle;   width: 27px;}
 
 .navbar-blue { min-height: 70px; box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5); z-index: 100; background-color: #1e88e5; border-radius: 0; color:#ffffff;}

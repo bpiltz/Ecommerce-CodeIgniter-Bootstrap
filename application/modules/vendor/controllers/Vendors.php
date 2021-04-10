@@ -30,14 +30,19 @@ class Vendors extends VENDOR_Controller
         if((!isset($_POST) || count($_POST) == 0) && isset($_SESSION['vendors_filter'])){
             $_POST = $_SESSION['vendors_filter'];
         }
+        if(isset($_POST['vendors_filter_reset'])){
+            $_POST = [];
+            unset($_SESSION['vendors_filter']);
+        }
         $filterName = isset($_POST['vendors_filter_name']) ? $_POST['vendors_filter_name'] : '';
         $filterNDescription = isset($_POST['vendors_filter_description']) ? $_POST['vendors_filter_description'] : '';
         $data['vendors'] = $this->Vendors_model->getVendors($this->num_rows, $page, $filterName, $filterNDescription);
         if(isset($_POST['vendors_filter_submit'])){
             $data['filter'] = $_POST;
-            $_SESSION['vendors_filter'] = $_POST;
+            $_SESSION['vendors_filter']['vendors_filter_name'] = $_POST['vendors_filter_name'];
+            $_SESSION['vendors_filter']['vendors_filter_description'] = $_POST['vendors_filter_description'];
         }else{
-            if($_SESSION['vendors_filter']){
+            if(isset($_SESSION['vendors_filter'])){
                 $data['filter'] = $_SESSION['vendors_filter'];
             }else{
                 $data['filter'] = array(

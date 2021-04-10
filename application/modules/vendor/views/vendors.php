@@ -16,6 +16,9 @@
 		    </div>
 		   	<div class="col-md-2 col-xs-12">
                 <div class="text-center submit-settings">
+                    <button type="submit" name="vendors_filter_reset" class="btn btn-grey btn-sm">
+                    	<span class="glyphicon glyphicon-remove-circle"></span>
+                    </button>
                     <button type="submit" name="vendors_filter_submit" class="btn btn-green btn-sm">
                     	<span class="glyphicon glyphicon-filter"></span>&nbsp;&nbsp;<?= lang('vendors_filter_submit') ?>
                     </button>
