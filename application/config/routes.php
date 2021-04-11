@@ -156,6 +156,7 @@ $route['vendor/profile'] = "vendor/Profile";
 $route['(\w{2})/vendor/profile'] = "vendor/Profile";
 $route['vendor/vendors'] = "vendor/Vendors";
 $route['(\w{2})/vendor/vendors'] = "vendor/Vendors";
+$route['vendor/messages'] = "vendor/Messages";
 $route['vendor/(:any)'] = "vendor/Vendor/index/$1";
 $route['(\w{2})/vendor/(:any)'] = "vendor/Vendor/index/$2";
 $route['vendor/uploadOthersImages'] = "vendor/AddProduct/do_upload_others_images";

@@ -27,7 +27,7 @@ class Mahana_messaging
         // ------------------------------------------------------------------------
         require_once dirname(__FILE__).'/../config/mahana.php';
 
-        $this->ci->load->model('mahana_model');
+        $this->ci->load->model('Mahana_model');
         $this->ci->load->helper('language');
         $this->ci->lang->load('mahana');
     }
@@ -53,7 +53,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-        if ($message = $this->ci->mahana_model->get_message($msg_id, $user_id))
+        if ($message = $this->ci->Mahana_model->get_message($msg_id, $user_id))
         {
             return $this->_success($message);
         }
@@ -85,7 +85,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-        if ($message = $this->ci->mahana_model->get_full_thread($thread_id, $user_id, $full_thread, $order_by))
+        if ($message = $this->ci->Mahana_model->get_full_thread($thread_id, $user_id, $full_thread, $order_by))
         {
             return $this->_success($message);
         }
@@ -111,7 +111,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-		$message = $this->ci->mahana_model->get_all_threads($user_id, $full_thread, $order_by);
+		$message = $this->ci->Mahana_model->get_all_threads($user_id, $full_thread, $order_by);
         if (is_array($message))
         {
             return $this->_success($message);
@@ -139,7 +139,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-		$message = $this->ci->mahana_model->get_all_threads($user_id, $full_thread, $order_by);
+		$message = $this->ci->Mahana_model->get_all_threads($user_id, $full_thread, $order_by);
         if (is_array($message))
         {
             $threads = array();
@@ -191,7 +191,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_STATUS_ID);
         }
 
-        if ($this->ci->mahana_model->update_message_status($msg_id, $user_id, $status_id))
+        if ($this->ci->Mahana_model->update_message_status($msg_id, $user_id, $status_id))
         {
             return $this->_success(NULL, MSG_STATUS_UPDATE);
         }
@@ -222,17 +222,17 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-        if ( ! $this->ci->mahana_model->valid_new_participant($thread_id, $user_id))
+        if ( ! $this->ci->Mahana_model->valid_new_participant($thread_id, $user_id))
         {
             $this->_particpant_error(MSG_ERR_PARTICIPANT_EXISTS);
         }
 
-        if ( ! $this->ci->mahana_model->application_user($user_id))
+        if ( ! $this->ci->Mahana_model->application_user($user_id))
         {
             $this->_particpant_error(MSG_ERR_PARTICIPANT_NONSYSTEM);
         }
 
-        if ($this->ci->mahana_model->add_participant($thread_id, $user_id ))
+        if ($this->ci->Mahana_model->add_participant($thread_id, $user_id ))
         {
             return $this->_success(NULL, MSG_PARTICIPANT_ADDED);
         }
@@ -262,7 +262,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-        if ($this->ci->mahana_model->remove_participant($thread_id, $user_id))
+        if ($this->ci->Mahana_model->remove_participant($thread_id, $user_id))
         {
             return $this->_success(NULL, MSG_PARTICIPANT_REMOVED);
         }
@@ -299,7 +299,7 @@ class Mahana_messaging
             );
         }
 
-        if ($thread_id = $this->ci->mahana_model->send_new_message($sender_id, $recipients, $subject, $body, $priority))
+        if ($thread_id = $this->ci->Mahana_model->send_new_message($sender_id, $recipients, $subject, $body, $priority))
         {
             return $this->_success($thread_id, MSG_MESSAGE_SENT);
         }
@@ -332,7 +332,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_MSG_ID);
         }
 
-        if ($new_msg_id = $this->ci->mahana_model->reply_to_message($msg_id, $sender_id, $body, $priority))
+        if ($new_msg_id = $this->ci->Mahana_model->reply_to_message($msg_id, $sender_id, $body, $priority))
         {
             return $this->_success($new_msg_id, MSG_MESSAGE_SENT);
         }
@@ -357,7 +357,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_THREAD_ID);
         }
 
-        if ($participants = $this->ci->mahana_model-> get_participant_list($thread_id, $sender_id))
+        if ($participants = $this->ci->Mahana_model-> get_participant_list($thread_id, $sender_id))
         {
             return $this->_success($participants);
         }
@@ -382,7 +382,7 @@ class Mahana_messaging
             return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
         }
 
-        if (is_numeric($message = $this->ci->mahana_model->get_msg_count($user_id, $status_id)))
+        if (is_numeric($message = $this->ci->Mahana_model->get_msg_count($user_id, $status_id)))
         {
             return $this->_success($message);
         }

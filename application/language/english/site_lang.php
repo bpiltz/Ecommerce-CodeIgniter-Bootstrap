@@ -200,6 +200,7 @@ $lang['vendor_product_deleted'] = 'Product deleted';
 $lang['vendor_view'] = 'Vendor view ';
 $lang['vendor'] = 'Verkäufer';
 $lang['vendor_vendors'] = 'Network';
+$lang['vendor_messages'] = 'Dialogs';
 $lang['vendor_name'] = 'Vendor name';
 $lang['enter_vendor_name'] = 'Vendor name';
 $lang['vendor_surname'] = 'Vendor surname';
