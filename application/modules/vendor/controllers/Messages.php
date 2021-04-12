@@ -31,31 +31,34 @@ class Messages extends VENDOR_Controller
 
         //var_dump($messages);
         //echo "<br/><br/>";
+        //die();
         $statsIndex = 0;
         for ($i = 0; $i < count($messages["retval"]); $i++)  {
             //var_dump($messages["retval"][$i+1]);
             //echo "<br/>";
-            $key = array_search($messages["retval"][$i+1]["messages"][0]["sender_id"], $messageStatsRaw["sender_ids"]);
-            //echo $key;
-             if ($key === false) {
-                $messageStatsRaw["sender_ids"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["sender_id"];
-                $messageStatsRaw["sender_names"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["user_name"];
-                if ($messages["retval"][$i+1]["messages"][0]["status"] == "0") {
-                    $messageStatsRaw["status_0s"][$statsIndex] = 1;
-                } else {
-                    $messageStatsRaw["status_0s"][$statsIndex] = 0;
-                }
-                $messageStatsRaw["last_times"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["cdate"];
-                $statsIndex++;
-            } else {
-                for ($j = 0; $j < count($messages["retval"][$i+1]["messages"]); $j++) {
-                    if ($messages["retval"][$i+1]["messages"][$j]["status"] == "0") {
-                        $messageStatsRaw["status_0s"][$key]++; 
+            if($messages["retval"][$i+1]["messages"][0]["sender_id"] != $this->vendor_id){
+                $key = array_search($messages["retval"][$i+1]["messages"][0]["sender_id"], $messageStatsRaw["sender_ids"]);
+                //echo $key;
+                if ($key === false) {
+                    $messageStatsRaw["sender_ids"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["sender_id"];
+                    $messageStatsRaw["sender_names"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["user_name"];
+                    if (intval($messages["retval"][$i+1]["messages"][0]["status"]) == MSG_STATUS_UNREAD) {
+                        $messageStatsRaw["status_0s"][$statsIndex] = 1;
+                    } else {
+                        $messageStatsRaw["status_0s"][$statsIndex] = 0;
                     }
-                    $messageStatsRaw["last_times"][$key] = $messages["retval"][$i+1]["messages"][$j]["cdate"];
+                    $messageStatsRaw["last_times"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["cdate"];
+                    $statsIndex++;
+                } else {
+                    for ($j = 0; $j < count($messages["retval"][$i+1]["messages"]); $j++) {
+                        if (intval($messages["retval"][$i+1]["messages"][$j]["status"]) == MSG_STATUS_UNREAD) {
+                            $messageStatsRaw["status_0s"][$key]++; 
+                        }
+                        $messageStatsRaw["last_times"][$key] = $messages["retval"][$i+1]["messages"][$j]["cdate"];
+                    }
                 }
             }
-            //echo "<br/><br/>";
+             //echo "<br/><br/>";
         }
 
         // var_dump($messageStatsRaw);
@@ -67,7 +70,6 @@ class Messages extends VENDOR_Controller
             $element["senderName"] = $messageStatsRaw["sender_names"][$size - $i - 1];
             $element["unread"] = $messageStatsRaw["status_0s"][$size - $i - 1];
             $element["time"] = $messageStatsRaw["last_times"][$size - $i - 1];
-            var_dump($element);
             $vendorData = $this->Vendors_model->getVendor($element["senderId"]);
             $element["url"] = $vendorData[0]->url;
             $element["profile_image"] = $vendorData[0]->profile_image;

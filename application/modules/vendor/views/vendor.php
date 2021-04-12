@@ -1,25 +1,24 @@
 
 
 <div class="row"> 
-    <div class="col-md-6 col-md-offset-3">
-    	<div class="row"> 
-	       	<div class="col-md-12">
-		        <div class="text-center submit-settings">
-		        	<?php
-		        	$previous = "javascript:history.go(-1)";
-					if(isset($_SERVER['HTTP_REFERER'])) {
-		    			$previous = $_SERVER['HTTP_REFERER'];
-					}
-					?>
-					<a href="<?= $previous ?>" class="vendor-back" >
-		            <button type="submit" name="vendors_filter_submit" class="btn btn-green btn-sm" >
-		              	<span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;<?= lang('back') ?>
-		            </button>
-		        </a>
-		        </div>
-        	</div>
+    <div class="col-md-12">
+        <div class="text-center submit-settings">
+        	<?php
+        	$previous = "javascript:history.go(-1)";
+			if(isset($_SERVER['HTTP_REFERER'])) {
+    			$previous = $_SERVER['HTTP_REFERER'];
+			}
+			?>
+			<a href="<?= $previous ?>" class="vendor-back" >
+            <button type="submit" name="back" class="btn btn-green btn-sm" >
+              	<span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;<?= lang('back') ?>
+            </button>
+	        </a>
 	    </div>
-
+	</div>
+</div>
+<div class="row"> 
+    <div class="col-md-6">
 	    <div class="content">
 	    	<div class="row"> 
 	       	    <div class="col-md-6">
@@ -84,5 +83,50 @@
 	        	</div>
 	        </div>        
        	</div>        
+    </div>
+    <div class="col-md-6">
+	    <div class="content">
+      	  	<form  class="form-box"  method="POST" action="<?= LANG_URL . '/vendor/' . $vendor[0]->url  ?>" enctype="multipart/form-data">
+      	  		<div class="row"> 
+	       	    	<div class="col-md-12">
+	       	    		<div class="form-group">
+                    		<label><?= lang('vendor_subject') ?></label>
+                    		<input type="text" class="form-control" value="" name="subject" placeholder="">
+                		</div>
+                	</div>
+                </div>
+                <div class="row"> 
+                	<div class="col-md-10">
+	                    <div class="form-group">
+	                    	<label><?= lang('vendor_message') ?></label>
+	                        <textarea class="form-control" name="message"></textarea>
+	                    </div>
+	                </div>
+	                <div class="col-md-2">
+	                    <div class="text-center submit-message">
+	                    	<button type="submit" name="sendMessage" class="btn btn-green btn-sm"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;<?= lang('send') ?></button>
+	                	</div>
+	               	</div>
+	        	</div> 
+            </form>
+       	</div>        
+		<?php
+		foreach ($messages as $row) { ?>
+		<div class="row">
+			<?php
+			if($row->sender_id != $this->vendor_id){ ?>
+		    	<div class="col-md-10">
+		   	<?php
+			} else { ?>
+				<div class="col-md-offset-2 col-md-10">
+			<?php } ?>
+					<div class="content">
+				    	<b><?= $row->subject ?> </b><br/>
+				    	<?= $row->body ?><br/>
+				    	(<?= $row->cdate ?>)
+			        </div>        
+			    </div>
+			</div>
+		<?php } ?>
     </div>
 </div>
