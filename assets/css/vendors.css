@@ -83,4 +83,9 @@ footer {width:100%; position:absolute;bottom:0;left:0; }
 .submit-settings {margin-top: 20px;}
 .datepicker-days .active {background-color: #26c6da;}
 .vendor-back {float: right; margin-bottom: 21px;}
+.chat-box { margin-bottom: 30px; }
+.profile-image { max-width:100%; margin-bottom: 5px; }
+.message-box { margin-bottom: 10px; }
 .submit-message { margin-top: 50px; float: right; }
+.message-time { text-align: right; color: #A0A0A0; font-size: 11px; }
+.message-header { margin-bottom: 6px; }

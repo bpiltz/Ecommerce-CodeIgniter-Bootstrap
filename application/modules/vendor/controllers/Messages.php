@@ -36,7 +36,7 @@ class Messages extends VENDOR_Controller
         for ($i = 0; $i < count($messages["retval"]); $i++)  {
             //var_dump($messages["retval"][$i+1]);
             //echo "<br/>";
-            if($messages["retval"][$i+1]["messages"][0]["sender_id"] != $this->vendor_id){
+            if(isset($messages["retval"][$i+1]) && $messages["retval"][$i+1]["messages"][0]["sender_id"] != $this->vendor_id){
                 $key = array_search($messages["retval"][$i+1]["messages"][0]["sender_id"], $messageStatsRaw["sender_ids"]);
                 //echo $key;
                 if ($key === false) {
