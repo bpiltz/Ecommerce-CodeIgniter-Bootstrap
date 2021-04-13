@@ -37,6 +37,12 @@ class Vendor extends VENDOR_Controller
         //$data['links_pagination'] = pagination('vendor/settings', $rowscount, $this->num_rows, MY_LANGUAGE_ABBR == MY_DEFAULT_LANGUAGE_ABBR ? 3 : 4);
         if(isset($_POST["sendMessage"]) && strlen($_POST["message"]) > 0){
             $messages = $this->mahana_messaging->send_new_message($this->vendor_id, $vendorInfo['id'], $_POST["subject"], $_POST["message"], $priority = PRIORITY_NORMAL);
+            
+            $this->sendmail->sendTo($vendorInfo['email'], 'Brieftaube Ortenau Netzwerk e.V.', 'Deine Nachricht von ' . 
+                $vendor['name'], 'Hallo liebes Mitglied,<br/><br/>diese Nachricht wurde an dich von ' . $vendor['name'] . ' gesendet:<br/><br/>' . $_POST["subject"] . 
+                '<br/><br/>' . $_POST["message"] . '<br/><br/>hier kommst Du direkt zum Dialog:<br/><br/>' . LANG_URL . '/vendor/' . $vendor .
+                '<br/><br/>Liebe Grüße,<br/><br/>Dein Ortenau Netzwerk e.V.');
+
             redirect(LANG_URL . '/vendor/' . $vendor);
         }
 
