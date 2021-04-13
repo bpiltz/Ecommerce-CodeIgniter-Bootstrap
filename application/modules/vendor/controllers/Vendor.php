@@ -52,6 +52,9 @@ class Vendor extends VENDOR_Controller
         for ($i = 0; $i < count($messagesRaw["retval"]); $i++)  {
             if($messagesRaw["retval"][$i]["sender_id"] == $this->vendor_id || $messagesRaw["retval"][$i]["sender_id"] == $vendorInfo['id']){
                 array_push($messages, (object) $messagesRaw["retval"][$i]);
+                if($messagesRaw["retval"][$i]["sender_id"] == $vendorInfo['id'] && intval($messagesRaw["retval"][$i]["status"]) == MSG_STATUS_UNREAD){
+                    $result = $this->mahana_messaging->update_message_status(intval($messagesRaw["retval"][$i]["id"]), $this->vendor_id, MSG_STATUS_READ );
+                }
             }
         }
 
