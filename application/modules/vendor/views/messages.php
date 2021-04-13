@@ -27,9 +27,14 @@ foreach ($dialogs as $row) { ?>
                     <?= $row->senderName ?>
 		        </div>
 			    <div class="col-md-3">
-			    	<?= $row->time ?>	    	
+			    	<?= lang('vendor_latest_message') ?>:
+			    	<?php
+			    		$time = strtotime($row->time);
+			    		echo date("m.d.Y, H:i:s", $time);
+			    	?>
 		        </div>
 		        <div class="col-md-3">
+			    	<?= lang('vendor_unread_messages') ?>:
 			    	<?= $row->unread ?>	    	
 		        </div>
 		    </div>

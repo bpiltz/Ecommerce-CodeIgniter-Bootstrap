@@ -28,10 +28,10 @@
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?= LANG_URL . '/vendor/messages' ?>"><i class="mdi mdi-account-multiple"></i> <?= lang('vendor_messages') ?></a></li>
-                        </ul>
-                         <ul class="nav navbar-nav">
                             <li><a href="<?= LANG_URL . '/vendor/vendors' ?>"><i class="mdi mdi-account-multiple"></i> <?= lang('vendor_vendors') ?></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li><a href="<?= LANG_URL . '/vendor/messages' ?>"><i class="mdi mdi-account-multiple"></i> <?= lang('vendor_messages') ?></a></li>
                         </ul>
                         <ul class="nav navbar-nav">
                             <li><a href="<?= LANG_URL . '/vendor/add/product' ?>"><i class="mdi mdi-plus"></i> <?= lang('vendor_add_product') ?></a></li>
