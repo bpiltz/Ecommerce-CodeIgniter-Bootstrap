@@ -12,7 +12,8 @@ class Auth_model extends CI_Model
     {
         $input = array(
             'email' => trim($post['u_email']),
-            'password' => password_hash($post['u_password'], PASSWORD_DEFAULT)
+            'password' => password_hash($post['u_password'], PASSWORD_DEFAULT),
+            'url' => bin2hex(random_bytes(5))
         );
         if (!$this->db->insert('vendors', $input)) {
             log_message('error', print_r($this->db->error(), true));

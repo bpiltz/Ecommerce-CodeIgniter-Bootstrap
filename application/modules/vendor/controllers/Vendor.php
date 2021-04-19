@@ -26,12 +26,16 @@ class Vendor extends VENDOR_Controller
         if ($vendorInfo == null) {
             show_404();
         }
+
         $data = array();
         $head = array();
         $head['title'] = $vendorInfo['surname'] . ' ' . $vendorInfo['name'];
         $head['description'] = $vendorInfo['surname'] . ' ' . $vendorInfo['name'];
         $head['keywords'] = '';
         $data['vendor'] = $this->Vendors_model->getVendor($vendorInfo['id']);
+        //var_dump($vendorInfo['id']);
+        //var_dump($data['vendor']);
+        //die();
         //$rowscount = $this->Products_model->productsCount($this->vendor_id);
         //$data['products'] = $this->Products_model->getproducts($this->num_rows, $page, $this->vendor_id);
         //$data['links_pagination'] = pagination('vendor/settings', $rowscount, $this->num_rows, MY_LANGUAGE_ABBR == MY_DEFAULT_LANGUAGE_ABBR ? 3 : 4);
@@ -47,7 +51,7 @@ class Vendor extends VENDOR_Controller
         }
 
 
-        $messagesRaw = $this->mahana_messaging->get_all_threads($this->vendor_id, false, 'DESC');
+        $messagesRaw = $this->mahana_messaging->get_Dialog($this->vendor_id, $vendorInfo['id']);
 
         //var_dump($messagesRaw);
         //echo "<br/><br/>";
@@ -59,10 +63,13 @@ class Vendor extends VENDOR_Controller
             if($messagesRaw["retval"][$i]["sender_id"] == $this->vendor_id || $messagesRaw["retval"][$i]["sender_id"] == $vendorInfo['id']){
                 array_push($messages, (object) $messagesRaw["retval"][$i]);
                 if($messagesRaw["retval"][$i]["sender_id"] == $vendorInfo['id'] && intval($messagesRaw["retval"][$i]["status"]) == MSG_STATUS_UNREAD){
+                    //var_dump($messagesRaw["retval"][$i]);
+                    //echo "<br/><br/>";
                     $result = $this->mahana_messaging->update_message_status(intval($messagesRaw["retval"][$i]["id"]), $this->vendor_id, MSG_STATUS_READ );
                 }
             }
         }
+
 
         $data["messages"] = $messages;
 

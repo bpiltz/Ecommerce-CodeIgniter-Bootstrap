@@ -21,7 +21,7 @@ class Messages extends VENDOR_Controller
 
     public function index($page = 0)
     {
-        $messages = $this->mahana_messaging->get_all_threads_grouped($this->vendor_id);
+        $messages = $this->mahana_messaging->get_all_threads($this->vendor_id);
 
         $messageStatsRaw = array();
         $messageStatsRaw["sender_ids"] = array();
@@ -29,33 +29,28 @@ class Messages extends VENDOR_Controller
         $messageStatsRaw["status_0s"] = array();
         $messageStatsRaw["last_times"] = array();
 
-        //var_dump($messages);
-        //echo "<br/><br/>";
-        //die();
         $statsIndex = 0;
         for ($i = 0; $i < count($messages["retval"]); $i++)  {
-            //var_dump($messages["retval"][$i+1]);
-            //echo "<br/>";
-            if(isset($messages["retval"][$i+1]) && $messages["retval"][$i+1]["messages"][0]["sender_id"] != $this->vendor_id){
-                $key = array_search($messages["retval"][$i+1]["messages"][0]["sender_id"], $messageStatsRaw["sender_ids"]);
+            //var_dump($messages["retval"][$i]);
+            //echo "<br/><br/>";
+            if(isset($messages["retval"][$i]) && $messages["retval"][$i]["sender_id"] != $this->vendor_id){
+                $key = array_search($messages["retval"][$i]["sender_id"], $messageStatsRaw["sender_ids"]);
                 //echo $key;
                 if ($key === false) {
-                    $messageStatsRaw["sender_ids"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["sender_id"];
-                    $messageStatsRaw["sender_names"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["user_name"];
-                    if (intval($messages["retval"][$i+1]["messages"][0]["status"]) == MSG_STATUS_UNREAD) {
+                    $messageStatsRaw["sender_ids"][$statsIndex] = $messages["retval"][$i]["sender_id"];
+                    $messageStatsRaw["sender_names"][$statsIndex] = $messages["retval"][$i]["user_name"];
+                    if (intval($messages["retval"][$i]["status"]) == MSG_STATUS_UNREAD) {
                         $messageStatsRaw["status_0s"][$statsIndex] = 1;
                     } else {
                         $messageStatsRaw["status_0s"][$statsIndex] = 0;
                     }
-                    $messageStatsRaw["last_times"][$statsIndex] = $messages["retval"][$i+1]["messages"][0]["cdate"];
+                    $messageStatsRaw["last_times"][$statsIndex] = $messages["retval"][$i]["cdate"];
                     $statsIndex++;
                 } else {
-                    for ($j = 0; $j < count($messages["retval"][$i+1]["messages"]); $j++) {
-                        if (intval($messages["retval"][$i+1]["messages"][$j]["status"]) == MSG_STATUS_UNREAD) {
-                            $messageStatsRaw["status_0s"][$key]++; 
-                        }
-                        $messageStatsRaw["last_times"][$key] = $messages["retval"][$i+1]["messages"][$j]["cdate"];
+                    if (intval($messages["retval"][$i]["status"]) == MSG_STATUS_UNREAD) {
+                        $messageStatsRaw["status_0s"][$key]++; 
                     }
+                    $messageStatsRaw["last_times"][$key] = $messages["retval"][$i]["cdate"];
                 }
             }
              //echo "<br/><br/>";

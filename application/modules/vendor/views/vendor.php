@@ -90,6 +90,7 @@
        	</div>        
     </div>
 	<?php
+	//echo $vendor[0]->id . " " . $this->vendor_id;
 	if($vendor[0]->id != $this->vendor_id){ ?>
 	    <div class="col-md-6">
 		    <div class="content chat-box ">
@@ -134,8 +135,8 @@
 								</div>
 								<div <div class="col-xs-6 message-time">
 							    	<?php
-							    		$time = strtotime($row->cdate);
-							    		echo date("m.d.Y, H:i:s", $time);
+						    		$time = strtotime($row->cdate);
+						    		echo date("m.d.Y, H:i:s", $time);
 							    	?>
 								</div>
 				        	</div>

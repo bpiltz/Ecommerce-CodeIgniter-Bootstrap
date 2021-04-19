@@ -151,6 +151,27 @@ class Mahana_model extends CI_Model
         $sql .= ' ORDER BY m.cdate ' . $order_by;
 
         $query = $this->db->query($sql, array($user_id, $user_id, $thread_id));
+        //$query->result_array();
+        //echo $this->db->last_query();
+        //die();
+
+        return $query->result_array();
+    }
+
+    // ------------------------------------------------------------------------
+
+    function get_Dialog($user_id_1, $user_id_2)
+    {
+        $sql = 'SELECT m.*, s.status, t.subject, '.USER_TABLE_USERNAME .
+        ' FROM ' . $this->db->dbprefix . 'msg_participants p ' .
+        ' JOIN ' . $this->db->dbprefix . 'msg_threads t ON (t.id = p.thread_id) ' .
+        ' JOIN ' . $this->db->dbprefix . 'msg_messages m ON (m.thread_id = t.id) ' .
+        ' JOIN ' . $this->db->dbprefix . USER_TABLE_TABLENAME . ' ON (' . USER_TABLE_ID . ' = m.sender_id) '.
+        ' JOIN ' . $this->db->dbprefix . 'msg_status s ON (s.message_id = m.id AND s.user_id = ? ) ' .
+        ' where p.user_id = ? and exists (select 1 from msg_participants i where i.thread_id = p.thread_id and i.user_id = ?) ' .
+        ' AND m.cdate >= p.cdate ORDER BY m.cdate DESC ' ;
+
+        $query = $this->db->query($sql, array($user_id_1, $user_id_1, $user_id_2));
 
         return $query->result_array();
     }
@@ -184,6 +205,7 @@ class Mahana_model extends CI_Model
 
         $query = $this->db->query($sql, array($user_id, $user_id));
 
+        //echo $this->db->last_query();
         return $query->result_array();
     }
 

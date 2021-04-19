@@ -166,6 +166,30 @@ class Mahana_messaging
 
     // ------------------------------------------------------------------------
 
+    function get_Dialog($user_id_1, $user_id_2)
+    {
+        if (empty($user_id_1))
+        {
+            return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
+        }
+
+        if (empty($user_id_2))
+        {
+            return $this->_invalid_id(MSG_ERR_INVALID_USER_ID);
+        }
+
+        $messages = $this->ci->Mahana_model->get_Dialog($user_id_1, $user_id_2);
+        if (is_array($messages))
+        {
+            return $this->_success($messages);
+        }
+
+        // General Error Occurred
+        return $this->_general_error();
+    }
+
+    // ------------------------------------------------------------------------
+
     /**
      * update_message_status() - will change status on message for particular user
      *
@@ -196,7 +220,7 @@ class Mahana_messaging
             return $this->_success(NULL, MSG_STATUS_UPDATE);
         }
         
-        
+
         // General Error Occurred
         return $this->_general_error();
 
