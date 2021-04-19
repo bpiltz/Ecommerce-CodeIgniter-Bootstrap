@@ -35,7 +35,8 @@ class Vendor extends VENDOR_Controller
         $data['vendor'] = $this->Vendors_model->getVendor($vendorInfo['id']);
         //var_dump($vendorInfo);
         //echo "<br/><br/>";
-        //var_dump($this->vendor_profile["vendor_surname"]);
+        //var_dump($this->vendor_profile);
+        //var_dump($this->vendor_url);
         //die();
         //$rowscount = $this->Products_model->productsCount($this->vendor_id);
         //$data['products'] = $this->Products_model->getproducts($this->num_rows, $page, $this->vendor_id);
@@ -51,8 +52,8 @@ class Vendor extends VENDOR_Controller
             }
             $this->sendmail->sendTo($vendorInfo['email'], 'Brieftaube Ortenau Netzwerk e.V.', $mailSubject, 'Hallo liebes Mitglied,<br/><br/>' . 
                 $intro . '<br/><br/><br/><br/>' . $_POST["subject"] . 
-                '<br/><br/>' . $_POST["message"] . '<br/><br/><br/><br/><a href="' . LANG_URL . '/vendor/' . $this->vendor_profile["url"] . '">hier kommst Du direkt zum Dialog.</a><br/><br/>' . 
-                '<br/><br/>Liebe Grüße,<br/><br/>Dein Ortenau Netzwerk e.V.');
+                '<br/><br/>' . $_POST["message"] . '<br/><br/><br/><br/><a href="' . LANG_URL . '/vendor/' . $this->vendor_url . '">hier kommst Du direkt zum Dialog</a><br/><br/>' . 
+                'Liebe Grüße,<br/><br/>Dein Ortenau Netzwerk e.V.');
 
             redirect(LANG_URL . '/vendor/' . $vendor);
         }
