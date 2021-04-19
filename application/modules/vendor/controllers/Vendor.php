@@ -33,18 +33,25 @@ class Vendor extends VENDOR_Controller
         $head['description'] = $vendorInfo['surname'] . ' ' . $vendorInfo['name'];
         $head['keywords'] = '';
         $data['vendor'] = $this->Vendors_model->getVendor($vendorInfo['id']);
-        //var_dump($vendorInfo['id']);
-        //var_dump($data['vendor']);
+        //var_dump($vendorInfo);
+        //echo "<br/><br/>";
+        //var_dump($this->vendor_profile["vendor_surname"]);
         //die();
         //$rowscount = $this->Products_model->productsCount($this->vendor_id);
         //$data['products'] = $this->Products_model->getproducts($this->num_rows, $page, $this->vendor_id);
         //$data['links_pagination'] = pagination('vendor/settings', $rowscount, $this->num_rows, MY_LANGUAGE_ABBR == MY_DEFAULT_LANGUAGE_ABBR ? 3 : 4);
         if(isset($_POST["sendMessage"]) && strlen($_POST["message"]) > 0){
             $messages = $this->mahana_messaging->send_new_message($this->vendor_id, $vendorInfo['id'], $_POST["subject"], $_POST["message"], $priority = PRIORITY_NORMAL);
-            
-            $this->sendmail->sendTo($vendorInfo['email'], 'Brieftaube Ortenau Netzwerk e.V.', 'Deine Nachricht von ' . 
-                $vendor['name'], 'Hallo liebes Mitglied,<br/><br/>diese Nachricht wurde an dich von ' . $vendor['name'] . ' gesendet:<br/><br/>' . $_POST["subject"] . 
-                '<br/><br/>' . $_POST["message"] . '<br/><br/>hier kommst Du direkt zum Dialog:<br/><br/>' . LANG_URL . '/vendor/' . $vendor .
+            if(isset($this->vendor_profile["vendor_surname"]) && strlen($this->vendor_profile["vendor_surname"]) > 0){
+                $mailSubject = 'Deine Nachricht von ' . $this->vendor_profile["vendor_surname"];
+                $intro = 'diese Nachricht wurde an dich von ' . $this->vendor_profile["vendor_surname"] . ' gesendet:';
+            }else{
+                $mailSubject = 'Eine neue Nachricht';
+                $intro = 'Du hast eine neue Nachricht erhalten:';
+            }
+            $this->sendmail->sendTo($vendorInfo['email'], 'Brieftaube Ortenau Netzwerk e.V.', $mailSubject, 'Hallo liebes Mitglied,<br/><br/>' . 
+                $intro . '<br/><br/><br/><br/>' . $_POST["subject"] . 
+                '<br/><br/>' . $_POST["message"] . '<br/><br/><br/><br/><a href="' . LANG_URL . '/vendor/' . $this->vendor_profile["url"] . '">hier kommst Du direkt zum Dialog.</a><br/><br/>' . 
                 '<br/><br/>Liebe Grüße,<br/><br/>Dein Ortenau Netzwerk e.V.');
 
             redirect(LANG_URL . '/vendor/' . $vendor);
