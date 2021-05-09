@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <div class="container" id="blog">
     <div class="row eqHeight">
-        <div class="col-sm-8 col-sm-offset-3 col-md-9"> 
+        <div class="col-md-12"> 
             <div class="row">
                 <?php
                 if (!empty($posts)) {
