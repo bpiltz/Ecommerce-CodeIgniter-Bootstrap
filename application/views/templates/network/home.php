@@ -109,7 +109,9 @@ if (count($sliderProducts) > 0) {
                             <div class="item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="col-xs-12 col-sm-4">
                                     <a href="<?= LANG_URL . '/' . $product['url'] ?>">
-                                        <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" class="img-responsive">
+                                        <?php if (isset($product['image']) && $product['image'] != "") { ?>
+                                            <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" class="img-responsive">
+                                        <?php } ?> 
                                         <h1><?= $product['title'] ?></h1>
                                          <?php if (isset($_SESSION['logged_vendor'])) { ?>
                                             <span class="price">
