@@ -66,16 +66,25 @@ if (count($sliderProducts) > 0) {
         <h3><?= lang('blog_posts') ?></h3> 
         <div class="row">
             <div class="col-md-12">
-                <div class="carousel slide multi-item-carousel" id="theCarousel1">
+                <?php if (isset($newProducts) && count($newProducts) > 6) { ?>
+                <div class="carousel slide multi-item-carousel home-carousel" id="theCarousel1">
+                <?php }else{ ?>
+                <div class="carousel slide home-carousel" id="theCarousel1">
+                <?php } ?>  
+
                     <div class="carousel-inner">
                         <?php
                         $i = 0;
                         foreach ($lastBlogs as $post) {
                             ?>
                             <div class="item <?= $i == 0 ? 'active' : '' ?>">
+                                <?php if (isset($newProducts) && count($newProducts) > 6) { ?>
                                 <div class="col-xs-12 col-sm-4">
+                                <?php }else{ ?>
+                                <div class="col-xs-12 col-sm-12">
+                                <?php } ?> 
                                     <a href="<?= LANG_URL . '/blog/' . $post['url'] ?>">
-                                        <img src="<?= base_url('attachments/blog_images/' . $post['image']) ?>" class="img-responsive">
+                                        <img src="<?= base_url('attachments/blog_images/' . $post['image']) ?>" class="img-responsive img-carousel">
                                         <span class="time"><?= date('M d, Y', $post['time']) ?></span>
                                         <h1><?= character_limiter($post['title'], 85) ?></h1>
                                         <p class="description"><?= character_limiter(strip_tags($post['description']), 300) ?></p>
@@ -100,17 +109,25 @@ if (count($sliderProducts) > 0) {
         <h3><?= lang('new_products') ?></h3> 
         <div class="row">
             <div class="col-md-12">
+                <?php if (isset($newProducts) && count($newProducts) > 6) { ?>
                 <div class="carousel slide multi-item-carousel home-carousel" id="theCarousel">
+                <?php }else{ ?>
+                <div class="carousel slide home-carousel" id="theCarousel">
+                <?php } ?>  
                     <div class="carousel-inner">
                         <?php
                         $i = 0;
                         foreach ($newProducts as $product) {
                             ?>
                             <div class="item <?= $i == 0 ? 'active' : '' ?>">
+                                <?php if (isset($newProducts) && count($newProducts) > 6) { ?>
                                 <div class="col-xs-12 col-sm-4">
+                                <?php }else{ ?>
+                                <div class="col-xs-12 col-sm-12">
+                                <?php } ?> 
                                     <a href="<?= LANG_URL . '/' . $product['url'] ?>">
                                         <?php if (isset($product['image']) && $product['image'] != "") { ?>
-                                            <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" class="img-responsive">
+                                            <img src="<?= base_url('attachments/shop_images/' . $product['image']) ?>" class="img-responsive img-carousel">
                                         <?php } ?> 
                                         <h1><?= $product['title'] ?></h1>
                                          <?php if (isset($_SESSION['logged_vendor'])) { ?>
