@@ -66,6 +66,7 @@
                         $num_langs = count($allLanguages);
                         if ($num_langs > 0) {
                             ?> 
+                            <!--
                             <div class="dropdown dropdown-langs">
                                 <button class="dropdown-toggle" type="button" data-toggle="dropdown">
                                     <img src="<?= base_url('attachments/lang_flags/' . MY_LANGUAGE_ABBR . '.jpg') ?>" alt="<?= MY_LANGUAGE_ABBR ?>">
@@ -81,6 +82,7 @@
                                     ?>
                                 </ul>  
                             </div>
+                            -->
                         <?php } ?>
                         <form method="GET" class="search" id="bigger-search" action="<?= LANG_URL . '/shop' ?>">
                             <input type="hidden" name="category" value="<?= isset($_GET['category']) ? htmlspecialchars($_GET['category']) : '' ?>">
