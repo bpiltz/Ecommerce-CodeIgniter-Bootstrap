@@ -246,6 +246,7 @@ $lang['vendor_profile_image'] = 'Profilbild';
 $lang['vendors_filter_name'] = 'Suche in Namen';
 $lang['vendors_filter_description'] = 'Suche in Beschreibung';
 $lang['vendors_filter_submit'] = 'filtern';
+$lang['vendors_no_access'] = 'Bitte lade ein Profilbild hoch und schreibe etwas über dich im Feld "Beschreibung". Erst dann kannst Du andere Netzwerkteilnehmer sehen und mit ihnen Kontakt aufnehmen. Hier kommst Du zu deinem ';
 $lang['time_created'] = 'Erstell-Dateum';
 $lang['order_type'] = 'Bestellungs-Art';
 $lang['status'] = 'Status';
