@@ -1,0 +1,1 @@
+ALTER TABLE `vendors` ADD `agree_disclosure` BOOLEAN NOT NULL DEFAULT FALSE AFTER `birthday`, ADD `agree_terms_of_use` BOOLEAN NOT NULL DEFAULT FALSE AFTER `agree_disclosure`;
