@@ -24,7 +24,7 @@
                     <input type="submit" name="login" class="login submit" value="<?= lang('u_login') ?>">
                 </form>
                 <div class="login-help">
-                    <a href="<?= LANG_URL . '/vendor/register' ?>"><?= lang('register_me') ?></a> - <a href="<?= LANG_URL . '/vendor/forgotten-password' ?>"><?= lang('forgot_pass') ?></a>
+                    <a href="<?= LANG_URL . '/vendor/forgotten-password' ?>"><?= lang('forgot_pass') ?></a>
                 </div>
             </div>
         </div>

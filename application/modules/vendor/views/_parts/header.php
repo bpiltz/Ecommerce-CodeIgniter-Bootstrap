@@ -45,6 +45,15 @@
                         <ul class="nav navbar-nav">
                             <li><a href="<?= LANG_URL . '/vendor/profile' ?>"><i class="mdi mdi-account"></i> <?= lang('vendor_profile') ?></a></li>
                         </ul>
+                        <?php
+                        if (isset($_SESSION['logged_vendor_admin'])) {
+                            ?>
+                            <ul class="nav navbar-nav">
+                                <li><a href="<?= LANG_URL . '/vendor/register' ?>"><i class="mdi mdi-account"></i> <?= lang('register_vendors') ?></a></li>
+                            </ul>
+                            <?php
+                        }
+                        ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= LANG_URL . '/vendor/logout' ?>"><?= lang('vendor_logout') ?></a></li>
                         </ul>

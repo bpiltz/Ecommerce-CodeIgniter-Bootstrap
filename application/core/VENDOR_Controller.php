@@ -94,10 +94,12 @@ class VENDOR_Controller extends MX_Controller
 
         if (!isset($_SESSION['logged_vendor']) && !in_array($urlString, $authPages) && !$this->isChangePasswordLink($urlString)) {
             redirect(LANG_URL . '/vendor/login');
+        } else if (isset($_SESSION['logged_vendor']) && strpos($urlString, 'vendor/register', 0) !== false && $this->vendorAdminCheck()) {
         } else if (isset($_SESSION['logged_vendor']) && in_array($urlString, $authPages)) {
-            redirect(LANG_URL . '/vendor/me');
+            redirect(LANG_URL . '/vendor/vendors');
         }
     }
+
 
     private function isChangePasswordLink($urlString){
         $urlSplit=explode('/', $urlString);
@@ -114,6 +116,21 @@ class VENDOR_Controller extends MX_Controller
         }
         $_SESSION['logged_vendor'] = $email;
     }
+
+    protected function setAdminSession($email)
+    {
+        $_SESSION['logged_vendor_admin'] = $email;
+    }
+
+    protected function vendorAdminCheck()
+    {
+        if(isset($_SESSION['logged_vendor_admin'])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+   
 
     private function setVendorInfo()
     {

@@ -38,6 +38,19 @@ class Auth_model extends CI_Model
         return true;
     }
 
+    public function checkVendorIsAdmin($post)
+    {
+        $this->db->where('email', $post['u_email']);
+        $query = $this->db->get('vendors');
+        $row = $query->row_array();
+        if (empty($row)) {
+            return false;
+        }else if(isset($row['admin']) && $row['admin'] == "1"){
+            return true;
+        }
+        return false;
+    }    
+
     public function updateVendorPassword($email)
     {
         $newPass = str_shuffle(bin2hex(openssl_random_pseudo_bytes(4)));

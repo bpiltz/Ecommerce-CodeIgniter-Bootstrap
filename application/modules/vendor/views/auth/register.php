@@ -8,6 +8,13 @@
                 <?php
             }
             ?>
+            <?php
+            if ($this->session->flashdata('success_register')) {
+                ?>
+                <div class="alert alert-success"><?= $this->session->flashdata('success_register') ?></div>
+                <?php
+            }
+            ?>
             <div class="vendor-login">
                 <h1><?= lang('user_register_page') ?></h1><br>
                 <form method="POST" action="">

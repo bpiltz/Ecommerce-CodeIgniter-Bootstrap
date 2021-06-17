@@ -42,6 +42,9 @@ class Auth extends VENDOR_Controller
                 if (isset($_POST['remember_me'])) {
                     $remember_me = true;
                 }
+                if($this->Auth_model->checkVendorIsAdmin($_POST)){
+                    $this->setAdminSession($_POST['u_email']);
+                }
                 $this->setLoginSession($_POST['u_email'], $remember_me);
                 redirect(LANG_URL . '/vendor/vendors');
             }
@@ -58,6 +61,12 @@ class Auth extends VENDOR_Controller
 
     public function register()
     {
+        if (!isset($_SESSION['logged_vendor'])) {
+            redirect(LANG_URL . '/vendor/login');
+        }
+        if (!$this->vendorAdminCheck()){
+            redirect(LANG_URL . '/vendor/vendors');
+        }
         $data = array();
         $head = array();
         $head['title'] = lang('user_register_page');
@@ -70,8 +79,9 @@ class Auth extends VENDOR_Controller
                 $this->session->set_flashdata('email', $_POST['u_email']);
                 redirect(LANG_URL . '/vendor/register');
             } else {
-                $this->setLoginSession($_POST['u_email'], false);
-                redirect(LANG_URL . '/vendor/vendors');
+                $this->session->set_flashdata('success_register', lang('vendor_register_success'));
+                // $this->setLoginSession($_POST['u_email'], false);
+                redirect(LANG_URL . '/vendor/register');
             }
         }
         $this->load->view('_parts/header_auth', $head);

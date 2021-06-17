@@ -34,6 +34,7 @@ class VendorProfile extends VENDOR_Controller
     public function logout()
     {
         unset($_SESSION['logged_vendor']);
+        unset($_SESSION['logged_vendor_admin']);
         delete_cookie('logged_vendor');
         redirect(LANG_URL . '/vendor/login');
     }
